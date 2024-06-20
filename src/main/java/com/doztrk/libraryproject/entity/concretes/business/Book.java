@@ -1,7 +1,6 @@
 package com.doztrk.libraryproject.entity.concretes.business;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -64,7 +63,10 @@ public class Book {
     @Column(nullable = false)
     private LocalDateTime createDate;
 
+    @Column(nullable = false)
     private Boolean builtIn;
+
+
 
 
 
