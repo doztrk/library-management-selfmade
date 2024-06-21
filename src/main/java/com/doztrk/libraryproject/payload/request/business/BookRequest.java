@@ -28,8 +28,7 @@ public class BookRequest {
     @Pattern(regexp = "\\d{3}-\\d{2}-\\d{5}-\\d{2}-\\d", message = "ISBN format must be 999-99-99999-99-9")
     private String isbn;
 
-    @Min(value = 1000,message = "Publish date must be a valid year (e.g., 1950)")
-    @Min(value = 9999,message = "Publish date must be a valid year (e.g., 1950)")
+
     private Integer pageCount;
 
     @NotNull
@@ -38,6 +37,8 @@ public class BookRequest {
     @NotNull
     private Long publisherId;
 
+    @Min(value = 1000,message = "Publish date must be a valid year (e.g., 1950)")
+    @Min(value = 9999,message = "Publish date must be a valid year (e.g., 1950)")
     private Integer publishDate;
 
     @NotNull

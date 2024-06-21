@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.File;
 import java.time.LocalDateTime;
-@Entity
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Book {
 
     @Id
@@ -65,12 +66,6 @@ public class Book {
 
     @Column(nullable = false)
     private Boolean builtIn;
-
-
-
-
-
-
 
 
 

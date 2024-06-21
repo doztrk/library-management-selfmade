@@ -1,5 +1,6 @@
 package com.doztrk.libraryproject.service.business;
 
+import com.doztrk.libraryproject.payload.response.business.BookResponse;
 import com.doztrk.libraryproject.repository.business.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,10 +16,8 @@ public class BookService {
 
 
     public Page<BookResponse> getBooksByPage(
-            HttpServletRequest httpServletRequest,
             String query, Long categoryId, Long authorId,
             Long publisherId, Integer page, Integer size, String sort, String type) {
-
 
     }
 }
