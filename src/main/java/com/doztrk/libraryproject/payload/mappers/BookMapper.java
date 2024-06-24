@@ -4,7 +4,10 @@ package com.doztrk.libraryproject.payload.mappers;
 import com.doztrk.libraryproject.entity.concretes.business.Book;
 import com.doztrk.libraryproject.payload.request.business.BookRequest;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class BookMapper {
 
     public BookResponse mapBookToBookResponse(Book book){
