@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -13,6 +14,13 @@ import org.springframework.stereotype.Component;
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoanResponse {
+
+    private Long userId;
+    private Long bookId;
+    private LocalDateTime loanDate;
+    private LocalDateTime expireDate;
+    private LocalDateTime returnDate;
+    private String notes;
 
 
 

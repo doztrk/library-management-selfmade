@@ -4,12 +4,15 @@ package com.doztrk.libraryproject.service.helper;
 import com.doztrk.libraryproject.entity.concretes.business.Author;
 import com.doztrk.libraryproject.entity.concretes.business.Category;
 import com.doztrk.libraryproject.entity.concretes.business.Publisher;
+import com.doztrk.libraryproject.entity.concretes.user.User;
+import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
 import com.doztrk.libraryproject.repository.business.AuthorRepository;
 import com.doztrk.libraryproject.repository.business.BookRepository;
 import com.doztrk.libraryproject.repository.business.CategoryRepository;
 import com.doztrk.libraryproject.repository.business.PublisherRepository;
+import com.doztrk.libraryproject.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,8 @@ public class MethodHelper {
     private final CategoryRepository categoryRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
+    private final UserRepository userRepository;
+
 
 
 
@@ -39,5 +44,19 @@ public class MethodHelper {
         return publisherRepository.findById(publisherId).orElseThrow(()->new ResourceNotFoundException(ErrorMessages.PUBLISHER_NOT_FOUND));
     }
 
+    public User isUserExistByUsername(String username){
+        User user =  userRepository.findByUsername(username);
+        if (user.getId() == null){
+            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND_USER_MESSAGE);
+        }
+        return user;
+    }
+
+    public void checkRole(User user, RoleType roleType){
+        if (!user.getRoles().equals(roleType)) {
+            throw new ResourceNotFoundException(
+                    String.format(ErrorMessages.NOT_FOUND_USER_WITH_ROLE_MESSAGE, user.getId(),roleType));
+        }
+    }
 
 }

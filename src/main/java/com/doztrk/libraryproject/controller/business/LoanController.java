@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -24,12 +25,12 @@ public class LoanController {
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping
-    public ResponseMessage<List<LoanResponse>> getAllLoans(
+    public ResponseMessage<List<LoanResponse>> getAllLoansForUser(
+            HttpServletRequest httpServletRequest,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
             @RequestParam(defaultValue = "desc") String type){
-
-
+        return loanService.getAllLoansForUser(httpServletRequest,page,size,sort,type);
     }
 }

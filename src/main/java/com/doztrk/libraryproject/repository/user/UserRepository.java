@@ -1,4 +1,4 @@
-package com.doztrk.libraryproject.repository.business;
+package com.doztrk.libraryproject.repository.user;
 
 import com.doztrk.libraryproject.entity.concretes.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository  extends JpaRepository<User,Long> {
+    User findByUsername(String username);
 }
