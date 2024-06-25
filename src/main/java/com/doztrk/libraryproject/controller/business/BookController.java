@@ -33,7 +33,7 @@ public class BookController {
             @RequestParam(name = "size", defaultValue = "20") Integer size,
             @RequestParam(name = "sort", defaultValue = "name") String sort,
             @RequestParam(name = "type", defaultValue = "asc") String type) {
-        return bookService.getBooksByPage(query, categoryId, authorId, publisherId, page,
+        return bookService.getBooksByPage(httpServletRequest,query, categoryId, authorId, publisherId, page,
                 size, sort, type);
     }
 
