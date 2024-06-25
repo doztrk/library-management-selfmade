@@ -51,7 +51,7 @@ public class BookRequest {
 
     @NotNull
     @Size(min = 6,max = 6,message = "Shelf code must be 6 chars")
-    @Pattern(regexp = "^[A-Z]{2}-\\d{3}$", message = "Shelf code must follow the format AA-999")
+    @Pattern(regexp = "^[A-Z]{2}-\\d{3}$", message = "Shelf code must follow the format WF-214")
     private String shelfCode;
 
     @NotNull

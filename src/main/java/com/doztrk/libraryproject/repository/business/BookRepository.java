@@ -31,4 +31,8 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
     boolean existsBookByNameEqualsIgnoreCase(String bookName);
 
+    boolean existsByIsbn(String isbn);
+
+    boolean existsByShelfCode(String shelfCode);
+
 }
