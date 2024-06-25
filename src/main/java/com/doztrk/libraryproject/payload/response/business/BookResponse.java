@@ -18,10 +18,10 @@ public class BookResponse {
     private String name;
     private String isbn;
     private Integer pageCount;
-    private String authorName;
-    private String publisherName;
+    private Long authorId;
+    private Long publisherId;
     private Integer publishDate;
-    private String categoryName;
+    private Long categoryId;
     private File image;
     private Boolean isLoanable;
     private String shelfCode;

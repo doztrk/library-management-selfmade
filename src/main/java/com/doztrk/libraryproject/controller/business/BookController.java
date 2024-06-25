@@ -21,7 +21,7 @@ public class BookController {
     private final BookService bookService;
 
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MEMBER','ANONYMOUS')")
     @GetMapping
     //  http://localhost:8080/books?q=sefiller&cat=4&author=34&publisher=42&page=1&size=10&sort=name&type=asc
     public Page<BookResponse> getBooksByPage(
@@ -38,7 +38,7 @@ public class BookController {
                 size, sort, type);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MEMBER','ANONYMOUS')")
     @GetMapping("/{id}") // http://localhost:8080/books/5
     public ResponseMessage<BookResponse> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
