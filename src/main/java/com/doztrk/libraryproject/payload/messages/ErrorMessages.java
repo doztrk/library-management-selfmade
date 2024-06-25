@@ -15,4 +15,6 @@ public class ErrorMessages {
 
     public static final String PUBLISHER_NOT_FOUND = "No Publisher with this ID";
 
+    public static final String BOOK_NOT_FOUND = "Book with ID %s not found";
+
 }

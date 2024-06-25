@@ -1,8 +1,12 @@
 package com.doztrk.libraryproject.service.business;
 
 import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.mappers.BookMapper;
+import com.doztrk.libraryproject.payload.messages.ErrorMessages;
+import com.doztrk.libraryproject.payload.messages.SuccessMessages;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
+import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.repository.business.BookRepository;
 import com.doztrk.libraryproject.service.helper.MethodHelper;
 import com.doztrk.libraryproject.service.helper.PageableHelper;
@@ -11,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.mapping.Property;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +31,9 @@ public class BookService {
     private final PropertyValidator propertyValidator;
 
 
-    public Page<BookResponse> getBooksByPage(HttpServletRequest httpServletRequest, String query, Long categoryId, Long authorId, Long publisherId, Integer page, Integer size, String sort, String type) {
+    public Page<BookResponse> getBooksByPage(HttpServletRequest httpServletRequest,
+                                             String query, Long categoryId, Long authorId, Long publisherId,
+                                             Integer page, Integer size, String sort, String type) {
 
         if (query.isEmpty() && categoryId == null && authorId == null && publisherId == null) {
             throw new IllegalArgumentException("At least one parameter is needed");
@@ -42,8 +49,16 @@ public class BookService {
                 : bookRepository.findAllBooksActive(pageable, query, categoryId, authorId, publisherId);
 
         return booksByPage.map(bookMapper::mapBookToBookResponse);
-
-        return booksByPage.map(bookMapper::mapBookToBookResponse);
     }
 
+    public ResponseMessage<BookResponse> getBookById(Long id) {
+        Book bookFound = bookRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, id)));
+        return ResponseMessage.<BookResponse>builder()
+                .message(SuccessMessages.BOOK_FOUND)
+                .object(bookMapper.mapBookToBookResponse(bookFound))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
 }
