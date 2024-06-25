@@ -12,5 +12,6 @@ public class SuccessMessages {
 
     public static final String BOOK_FOUND = "Book found successfully";
     public static final String BOOK_SAVED = "Book has been saved successfully";
+    public static final String BOOK_DELETED = "Book deleted successfully";
 
 }

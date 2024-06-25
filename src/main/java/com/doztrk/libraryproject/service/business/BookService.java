@@ -1,6 +1,7 @@
 package com.doztrk.libraryproject.service.business;
 
 import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ConflictException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.mappers.BookMapper;
@@ -105,4 +106,18 @@ public class BookService {
     }
 
 
+    public ResponseMessage<BookResponse> deleteBookById(Long id) {
+        Book bookToBeDeleted = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.BOOK_NOT_FOUND));
+
+        if (bookToBeDeleted.getIsLoanable().equals(false)) {
+            throw new BadRequestException(ErrorMessages.BOOK_HAS_LOAN);
+        } else {
+            bookRepository.delete(bookToBeDeleted);
+        }
+        return ResponseMessage.<BookResponse>builder()
+                .message(SuccessMessages.BOOK_DELETED)
+                .httpStatus(HttpStatus.OK)
+                .object(bookMapper.mapBookToBookResponse(bookToBeDeleted))
+                .build();
+    }
 }

@@ -22,7 +22,8 @@ public class BookController {
 
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
-    @GetMapping //  http://localhost:8080/books?q=sefiller&cat=4&author=34&publisher=42&page=1&size=10&sort=name&type=asc
+    @GetMapping
+    //  http://localhost:8080/books?q=sefiller&cat=4&author=34&publisher=42&page=1&size=10&sort=name&type=asc
     public Page<BookResponse> getBooksByPage(
             HttpServletRequest httpServletRequest,
             @RequestParam(name = "q") String query,
@@ -33,25 +34,28 @@ public class BookController {
             @RequestParam(name = "size", defaultValue = "20") Integer size,
             @RequestParam(name = "sort", defaultValue = "name") String sort,
             @RequestParam(name = "type", defaultValue = "asc") String type) {
-        return bookService.getBooksByPage(httpServletRequest,query, categoryId, authorId, publisherId, page,
+        return bookService.getBooksByPage(httpServletRequest, query, categoryId, authorId, publisherId, page,
                 size, sort, type);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
     @GetMapping("/{id}") // http://localhost:8080/books/5
-    public ResponseMessage<BookResponse> getBookById(@PathVariable Long id){
+    public ResponseMessage<BookResponse> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping // http://localhost:8080/books
-    public ResponseMessage<BookResponse> createBook(@RequestBody  @Valid BookRequest bookRequest){ // Not needed to check http since it has PreAuthorize
+    public ResponseMessage<BookResponse> saveBook(@RequestBody @Valid BookRequest bookRequest) { // Not needed to check http since it has PreAuthorize
         return bookService.saveBook(bookRequest);
     }
 
+    @PreAuthorize(("hasAnyAuthority('ADMIN')"))
+    @DeleteMapping("/{id}") // http://localhost:8080/books
+    public ResponseMessage<BookResponse> deleteBookById(@PathVariable Long id) {
+        return bookService.deleteBookById(id);
 
-
-
+    }
 
 
 }

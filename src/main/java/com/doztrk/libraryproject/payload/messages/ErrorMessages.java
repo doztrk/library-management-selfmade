@@ -19,6 +19,8 @@ public class ErrorMessages {
     public static final String BOOK_ALREADY_EXISTS = "Book with name %s already exists";
     public static final String BOOK_ALREADY_EXISTS_BY_ISBN = "Book with Isbn %s already exists" ;
     public static final String BOOK_ALREADY_EXISTS_BY_SHELFCODE ="Book with this shelf code %s already exists" ;
+    public static final String BOOK_HAS_LOAN ="Book you are trying to delete has loan" ;
+
 
 
 }
