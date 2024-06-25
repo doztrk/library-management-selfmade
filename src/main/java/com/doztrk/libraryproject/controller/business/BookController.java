@@ -1,17 +1,17 @@
 package com.doztrk.libraryproject.controller.business;
 
 
-import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.payload.request.business.BookRequest;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.service.business.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/books")
@@ -22,7 +22,7 @@ public class BookController {
 
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
-    @GetMapping // /books?q=sefiller&cat=4&author=34&publisher=42&page=1&size=10&sort=name&type=asc
+    @GetMapping //  http://localhost:8080/books?q=sefiller&cat=4&author=34&publisher=42&page=1&size=10&sort=name&type=asc
     public Page<BookResponse> getBooksByPage(
             HttpServletRequest httpServletRequest,
             @RequestParam(name = "q") String query,
@@ -38,10 +38,17 @@ public class BookController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MENTOR','ANONYMOUS')")
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // http://localhost:8080/books/5
     public ResponseMessage<BookResponse> getBookById(@PathVariable Long id){
         return bookService.getBookById(id);
     }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PostMapping // http://localhost:8080/books
+    public ResponseMessage<BookResponse> createBook(@RequestBody  @Valid BookRequest bookRequest){ // Not needed to check http since it has PreAuthorize
+        return bookService.saveBook(bookRequest);
+    }
+
 
 
 

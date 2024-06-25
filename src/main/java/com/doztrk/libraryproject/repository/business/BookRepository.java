@@ -28,4 +28,7 @@ public interface BookRepository extends JpaRepository<Book,Long> {
             "AND b.author.id = :authorId " +
             "AND b.publisher.id = :publisherId")
     Page<Book> findAllBooksActive(Pageable pageable, String query, Long categoryId, Long authorId, Long publisherId);
+
+    boolean existsBookByNameEqualsIgnoreCase(String bookName);
+
 }
