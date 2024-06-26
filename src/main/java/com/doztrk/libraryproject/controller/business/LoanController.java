@@ -6,10 +6,7 @@ import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.service.business.LoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,16 +22,20 @@ public class LoanController {
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping // http://localhost:8080/loans?page=1&size=10&sort=loanDate&type=desc
-    public ResponseMessage<List<LoanResponse>> getAllLoansForUser(
+    public ResponseMessage<List<LoanResponse>> getAllLoansForAuthenticatedUser(
             HttpServletRequest httpServletRequest,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
             @RequestParam(defaultValue = "desc") String type){
-        return loanService.getAllLoansForUser(httpServletRequest,page,size,sort,type);
+        return loanService.getAllLoansForAuthenticatedUser(httpServletRequest,page,size,sort,type);
     }
 
+    @PreAuthorize("hasAnyAuthority('MEMBER')")
+    @GetMapping("/{id}")
+    public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(@PathVariable Long id, HttpServletRequest httpServletRequest){
+        return loanService.getLoanForAuthenticatedUser(id,httpServletRequest);
 
-
+    }
 
 }

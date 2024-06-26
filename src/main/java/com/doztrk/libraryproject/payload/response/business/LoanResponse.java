@@ -21,6 +21,7 @@ public class LoanResponse {
     private LocalDateTime expireDate;
     private LocalDateTime returnDate;
     private String notes;
+    private BookResponse book;
 
 
 
