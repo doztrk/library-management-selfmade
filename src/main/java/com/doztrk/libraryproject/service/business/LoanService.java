@@ -13,6 +13,7 @@ import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.repository.business.LoanRepository;
 import com.doztrk.libraryproject.service.helper.MethodHelper;
 import com.doztrk.libraryproject.service.helper.PageableHelper;
+import com.doztrk.libraryproject.service.validator.LoanValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,28 +32,30 @@ public class LoanService {
     private final MethodHelper methodHelper;
     private final PageableHelper pageableHelper;
     private final LoanMapper loanMapper;
+    private final LoanValidator loanValidator;
 
 
-    public ResponseMessage<List<LoanResponse>> getAllLoansForAuthenticatedUser(HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
+
+    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
         String username = (String) httpServletRequest.getAttribute("username");
         User user = methodHelper.isUserExistByUsername(username);
         Page<Loan> loanPage = loanRepository.findByUserId(user.getId(), pageable);
 
-        List<LoanResponse> loanResponseList = loanPage.stream()
-                .map(loan -> {
-                    LoanResponse loanResponse = loanMapper.mapLoanToLoanResponse(loan);
-                    // TODO: Further abstraction
-                    setLoanResponseNotes(loanResponse, loan, user);
-                    return loanResponse;
-                })
-                .collect(Collectors.toList());
 
-        return ResponseMessage.<List<LoanResponse>>builder()
+        //Converts loanPage to loanResponse as Page
+
+        Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
+            LoanResponse loanResponse = loanMapper.mapLoanToLoanResponse(loan);
+            setLoanResponseNotes(loanResponse, loan, user); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
+            return loanResponse;
+        });
+
+        return ResponseMessage.<Page<LoanResponse>>builder()
                 .message(SuccessMessages.LOANS_FOUND)
                 .httpStatus(HttpStatus.OK)
-                .object(loanResponseList)
+                .object(loanResponsePage)
                 .build();
     }
 
@@ -70,13 +73,9 @@ public class LoanService {
         Loan loan = loanRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND,id)));
 
 
-        //TODO : Further abstraction
-        if (!loan.getUser().getId().equals(authenticatedUser.getId())) {
-            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
-        }
-
+        loanValidator.validateLoanOwner(loan,authenticatedUser); // validates if the user owns the loan, throws exception if not.
        LoanResponse loanResponse =   loanMapper.mapLoanToLoanResponse(loan);
-        setLoanResponseNotes(loanResponse,loan,authenticatedUser);
+        setLoanResponseNotes(loanResponse,loan,authenticatedUser); //sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
 
         return ResponseMessage.<LoanResponse>builder()
                 .message(SuccessMessages.LOANS_FOUND)
