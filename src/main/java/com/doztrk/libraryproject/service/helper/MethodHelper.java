@@ -4,6 +4,7 @@ package com.doztrk.libraryproject.service.helper;
 import com.doztrk.libraryproject.entity.concretes.business.Author;
 import com.doztrk.libraryproject.entity.concretes.business.Category;
 import com.doztrk.libraryproject.entity.concretes.business.Publisher;
+import com.doztrk.libraryproject.entity.concretes.user.Role;
 import com.doztrk.libraryproject.entity.concretes.user.User;
 import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
@@ -15,6 +16,8 @@ import com.doztrk.libraryproject.repository.business.PublisherRepository;
 import com.doztrk.libraryproject.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -52,11 +55,14 @@ public class MethodHelper {
         return user;
     }
 
-    public void checkRole(User user, RoleType roleType){
-        if (!user.getRoles().equals(roleType)) {
-            throw new ResourceNotFoundException(
-                    String.format(ErrorMessages.NOT_FOUND_USER_WITH_ROLE_MESSAGE, user.getId(),roleType));
+
+    public  boolean checkRole(Set<Role> roles, RoleType roleType) {
+        for (Role role : roles) {
+            if (role.getRoleType().equals(roleType)) {
+                return true;
+            }
         }
+        return false;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.doztrk.libraryproject.entity.concretes.user;
 
+import com.doztrk.libraryproject.entity.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,10 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> userSet;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
 
 }

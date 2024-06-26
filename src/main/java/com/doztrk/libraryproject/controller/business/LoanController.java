@@ -24,7 +24,7 @@ public class LoanController {
 
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
-    @GetMapping
+    @GetMapping // http://localhost:8080/loans?page=1&size=10&sort=loanDate&type=desc
     public ResponseMessage<List<LoanResponse>> getAllLoansForUser(
             HttpServletRequest httpServletRequest,
             @RequestParam(defaultValue = "0") int page,
@@ -33,4 +33,8 @@ public class LoanController {
             @RequestParam(defaultValue = "desc") String type){
         return loanService.getAllLoansForUser(httpServletRequest,page,size,sort,type);
     }
+
+
+
+
 }

@@ -30,7 +30,6 @@ public class LoanService {
     private final LoanMapper loanMapper;
 
 
-
     public ResponseMessage<List<LoanResponse>> getAllLoansForUser(HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
@@ -42,11 +41,7 @@ public class LoanService {
                 .map(loan -> {
                     LoanResponse loanResponse = loanMapper.mapLoanToLoanResponse(loan);
                     // TODO: Further abstraction
-                    if (user.getRoles().equals(RoleType.EMPLOYEE) || user.getRoles().equals(RoleType.ADMIN)) {
-                        loanResponse.setNotes(loan.getNotes());
-                    } else {
-                        loanResponse.setNotes(null);
-                    }
+                    setLoanResponseNotes(loanResponse, loan, user);
                     return loanResponse;
                 })
                 .collect(Collectors.toList());
@@ -57,4 +52,13 @@ public class LoanService {
                 .object(loanResponseList)
                 .build();
     }
+
+    private void setLoanResponseNotes(LoanResponse loanResponse, Loan loan, User user) {
+        if (methodHelper.checkRole(user.getRoles(), RoleType.ADMIN) || methodHelper.checkRole(user.getRoles(), RoleType.EMPLOYEE)) {
+            loanResponse.setNotes(loan.getNotes());
+        } else {
+            loanResponse.setNotes(null);
+        }
+    }
+
 }
