@@ -124,6 +124,11 @@ public class BookService {
     public ResponseMessage<BookResponse> updateBookById(BookRequest bookRequest, Long id) {
        Book existingBook =  bookRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND,id)));
 
+       //Checker for builtIn of the book
+       if (existingBook.getBuiltIn()){
+           throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+       }
+
         Book updatedBook = bookRepository.save(bookMapper.mapBookRequestToUpdatedBook(id,bookRequest));
 
        return ResponseMessage.<BookResponse>builder()

@@ -25,7 +25,7 @@ public class ErrorMessages {
     public static final String BOOK_HAS_LOAN ="Book you are trying to delete has loan" ;
     public static final String LOAN_NOT_FOUND = "Loan id %s not found";
 
-    public static final String NOT_AUTHORIZED = "Not authorized for this loan";
+    public static final String NOT_AUTHORIZED = "Not authorized for this action";
 
 
 
