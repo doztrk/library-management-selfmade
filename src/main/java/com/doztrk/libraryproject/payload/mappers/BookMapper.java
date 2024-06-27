@@ -43,4 +43,12 @@ public class BookMapper {
                 .builtIn(bookRequest.getBuiltIn())
                 .build();
     }
+
+    public Book mapBookRequestToUpdatedBook(Long id, BookRequest bookRequest){
+        return mapBookRequestToBook(bookRequest)
+                .toBuilder()
+                .id(id)
+                .build();
+    }
+
 }

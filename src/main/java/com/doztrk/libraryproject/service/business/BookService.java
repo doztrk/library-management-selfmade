@@ -120,4 +120,16 @@ public class BookService {
                 .object(bookMapper.mapBookToBookResponse(bookToBeDeleted))
                 .build();
     }
+
+    public ResponseMessage<BookResponse> updateBookById(BookRequest bookRequest, Long id) {
+       Book existingBook =  bookRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND,id)));
+
+        Book updatedBook = bookRepository.save(bookMapper.mapBookRequestToUpdatedBook(id,bookRequest));
+
+       return ResponseMessage.<BookResponse>builder()
+               .message(SuccessMessages.BOOK_UPDATED)
+               .httpStatus(HttpStatus.OK)
+               .object(bookMapper.mapBookToBookResponse(updatedBook))
+               .build();
+    }
 }

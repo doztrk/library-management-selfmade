@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @Entity
 public class Book {
 
@@ -66,6 +66,8 @@ public class Book {
 
     @Column(nullable = false)
     private Boolean builtIn;
+
+
 
 
 

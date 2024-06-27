@@ -23,7 +23,7 @@ public class LoanController {
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping // http://localhost:8080/loans?page=1&size=10&sort=loanDate&type=desc
-    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser( //TODO:PAGE çevir
+    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(
                                                                                 HttpServletRequest httpServletRequest,
                                                                                 @RequestParam(defaultValue = "0") int page,
                                                                                 @RequestParam(defaultValue = "20") int size,
@@ -36,7 +36,17 @@ public class LoanController {
     @GetMapping("/{id}")
     public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(@PathVariable Long id, HttpServletRequest httpServletRequest){
         return loanService.getLoanForAuthenticatedUser(id,httpServletRequest);
+    }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    @GetMapping("/user/{userId}")
+    public ResponseMessage<Page<LoanResponse>> getLoansForUser(
+            @PathVariable Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "loanDate") String sort,
+            @RequestParam(defaultValue = "desc") String type ){
+        return null; //loanService.getLoansForUser(userId,page,size,sort,type);
     }
 
 

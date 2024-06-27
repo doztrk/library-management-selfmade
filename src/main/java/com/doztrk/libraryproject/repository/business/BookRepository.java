@@ -15,20 +15,21 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
 
 
-    @Query("SELECT b FROM Book b WHERE " +
+    @Query(value = "SELECT b FROM Book b WHERE " +
             "(b.name LIKE %:query% OR b.author.name LIKE %:query% OR b.isbn LIKE %:query% OR b.publisher.name LIKE %:query%) " +
-            "AND b.category.id = :categoryId " +
-            "AND b.author.id = :authorId " +
-            "AND b.publisher.id = :publisherId")
+            "AND (:categoryId IS NULL OR b.category.id = :categoryId) " +
+            "AND (:authorId IS NULL OR b.author.id = :authorId) " +
+            "AND (:publisherId IS NULL OR b.publisher.id = :publisherId)")
     Page<Book> findAllBooksByPageWithAdmin(Pageable pageable, String query, Long categoryId, Long authorId, Long publisherId);
 
-    @Query("SELECT b FROM Book b " +
+    @Query(value = "SELECT b FROM Book b " +
             "WHERE b.active = true " +
             "AND (b.name LIKE %:query% OR b.author.name LIKE %:query% OR b.isbn LIKE %:query% OR b.publisher.name LIKE %:query%) " +
-            "AND b.category.id = :categoryId " +
-            "AND b.author.id = :authorId " +
-            "AND b.publisher.id = :publisherId")
+            "AND (:categoryId IS NULL OR b.category.id = :categoryId) " +
+            "AND (:authorId IS NULL OR b.author.id = :authorId) " +
+            "AND (:publisherId IS NULL OR b.publisher.id = :publisherId)")
     Page<Book> findAllBooksActive(Pageable pageable, String query, Long categoryId, Long authorId, Long publisherId);
+
 
     boolean existsBookByNameEqualsIgnoreCase(String bookName);
 
