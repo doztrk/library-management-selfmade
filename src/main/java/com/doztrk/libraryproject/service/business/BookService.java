@@ -1,6 +1,9 @@
 package com.doztrk.libraryproject.service.business;
 
+import com.doztrk.libraryproject.entity.concretes.business.Author;
 import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.entity.concretes.business.Category;
+import com.doztrk.libraryproject.entity.concretes.business.Publisher;
 import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ConflictException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
@@ -10,7 +13,10 @@ import com.doztrk.libraryproject.payload.messages.SuccessMessages;
 import com.doztrk.libraryproject.payload.request.business.BookRequest;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
+import com.doztrk.libraryproject.repository.business.AuthorRepository;
 import com.doztrk.libraryproject.repository.business.BookRepository;
+import com.doztrk.libraryproject.repository.business.CategoryRepository;
+import com.doztrk.libraryproject.repository.business.PublisherRepository;
 import com.doztrk.libraryproject.service.helper.PageableHelper;
 import com.doztrk.libraryproject.service.validator.BookValidator;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +36,11 @@ public class BookService {
     private final BookMapper bookMapper;
     private final PageableHelper pageableHelper;
     private final BookValidator bookValidator;
+    private final AuthorRepository authorRepository;
+    private final PublisherRepository publisherRepository;
+    private final CategoryRepository categoryRepository;
+
+
 
 
     public Page<BookResponse> getBooksByPage(HttpServletRequest httpServletRequest,
@@ -46,10 +57,11 @@ public class BookService {
         boolean isAdmin = httpServletRequest.isUserInRole("ADMIN");
 
         Page<Book> booksByPage = isAdmin
-                ? bookRepository.findAllBooksByPageWithAdmin(pageable, query, categoryId, authorId, publisherId)
-                : bookRepository.findAllBooksActive(pageable, query, categoryId, authorId, publisherId);
+                ? bookRepository.findAllBooksAdmin(pageable, query, categoryId, authorId, publisherId)
+                : bookRepository.findAllBooks(pageable, query, categoryId, authorId, publisherId);
 
         return booksByPage.map(bookMapper::mapBookToBookResponse);
+        //TODO: CHANGE RESPONSE
     }
 
     public ResponseMessage<BookResponse> getBookById(Long id) {
@@ -70,6 +82,7 @@ public class BookService {
 
         bookValidator.validate(bookRequest);
         Book savedBook = bookMapper.mapBookRequestToBook(bookRequest);
+        savedBook.setBuiltIn(bookRequest.getBuiltIn()); //Since it is admin, it will be able to set builtIn
         savedBook.setCreateDate(LocalDateTime.now());
         bookRepository.save(savedBook);
 
@@ -121,20 +134,34 @@ public class BookService {
                 .build();
     }
 
-    public ResponseMessage<BookResponse> updateBookById(BookRequest bookRequest, Long id) {
-       Book existingBook =  bookRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND,id)));
-
-       //Checker for builtIn of the book
+    public ResponseMessage<BookResponse> updateBookById(BookRequest bookRequest, Long bookId) {
+       Book existingBook =  bookRepository.findById(bookId)
+               .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, bookId)));
+        //Checker for builtIn of the book
        if (existingBook.getBuiltIn()){
-           throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
-       }
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+        }
+        Author author = authorRepository // Get Author
+                .findById(bookRequest.getAuthorId())
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.AUTHOR_NOT_FOUND,bookRequest.getAuthorId())));
+        Publisher publisher = publisherRepository.findById(bookRequest.getPublisherId())
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.PUBLISHER_NOT_FOUND,bookRequest.getPublisherId())));
+        Category category = categoryRepository.findById(bookRequest.getPublisherId())
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.CATEGORY_NOT_FOUND,bookRequest.getCategoryId())));
 
-        Book updatedBook = bookRepository.save(bookMapper.mapBookRequestToUpdatedBook(id,bookRequest));
+
+        Book updatedBook = bookMapper.mapBookRequestToBook(bookRequest);
+        updatedBook.setAuthor(author);
+        updatedBook.setPublisher(publisher);
+        updatedBook.setCategory(category);
+
+        bookRepository.save(updatedBook);
 
        return ResponseMessage.<BookResponse>builder()
                .message(SuccessMessages.BOOK_UPDATED)
                .httpStatus(HttpStatus.OK)
-               .object(bookMapper.mapBookToBookResponse(updatedBook))
+               .object(bookMapper.mapBookToUpdatedBookResponse(updatedBook))
                .build();
+       //TODO:COMPLETE THIS UPDATE
     }
 }

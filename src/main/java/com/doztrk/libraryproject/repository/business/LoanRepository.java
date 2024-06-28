@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LoanRepository extends JpaRepository<Loan,Long> {
 
-    Page<Loan> findByUserId(Long userId, Pageable pageable);
+    Page<Loan> findByUserIdEquals(Long userId, Pageable pageable);
 }

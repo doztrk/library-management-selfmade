@@ -63,6 +63,7 @@ public class Book {
 
     @Column(nullable = false)
     private LocalDateTime createDate;
+    //TODO:PRE-PERSIST
 
     @Column(nullable = false)
     private Boolean builtIn;

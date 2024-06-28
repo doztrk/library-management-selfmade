@@ -21,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 @Service
@@ -40,7 +39,7 @@ public class LoanService {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
         String username = (String) httpServletRequest.getAttribute("username");
         User user = methodHelper.isUserExistByUsername(username);
-        Page<Loan> loanPage = loanRepository.findByUserId(user.getId(), pageable);
+        Page<Loan> loanPage = loanRepository.findByUserIdEquals(user.getId(), pageable);
 
         //Converts loanPage to loanResponse as Page
         Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
@@ -80,10 +79,13 @@ public class LoanService {
                 .build();
     }
 
-    public ResponseMessage<LoanResponse> getLoansForUser(Long userId, int page, int size, String sort, String type) {
+    public ResponseMessage<Page<LoanResponse>> getLoans(Long userId, int page, int size, String sort, String type) {
         User user = userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE,userId)));
         Pageable pageable = pageableHelper.getPageableWithProperties(page,size,sort,type);
-        Page<Loan> loanPage = loanRepository.findByUserId(userId,pageable);
+        Page<Loan> loanPage = loanRepository.findByUserIdEquals(userId,pageable);
+
+
+
 
 
         return null;//ResponseMessage.<LoanResponse>builder()

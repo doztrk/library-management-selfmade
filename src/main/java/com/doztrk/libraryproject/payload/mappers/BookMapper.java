@@ -1,7 +1,10 @@
 package com.doztrk.libraryproject.payload.mappers;
 
 
+import com.doztrk.libraryproject.entity.concretes.business.Author;
 import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.entity.concretes.business.Category;
+import com.doztrk.libraryproject.entity.concretes.business.Publisher;
 import com.doztrk.libraryproject.payload.request.business.BookRequest;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
 import org.springframework.stereotype.Component;
@@ -10,11 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookMapper {
 
-    public BookResponse mapBookToBookResponse(Book book){
+    public BookResponse mapBookToBookResponse(Book book) {
         return BookResponse.builder()
                 .id(book.getId())
                 .name(book.getName())
                 .isbn(book.getIsbn())
+                .authorId(book.getAuthor().getId())
                 .pageCount(book.getPageCount())
                 .publishDate(book.getPublishDate())
                 .categoryId(book.getCategory().getId())
@@ -26,11 +30,10 @@ public class BookMapper {
                 .isActive(book.getIsActive())
                 .isFeatured(book.getIsFeatured())
                 .createDate(book.getCreateDate())
-                .builtIn(book.getBuiltIn())
-                .build();
+                .builtIn(book.getBuiltIn()).build();
     }
 
-    public Book mapBookRequestToBook(BookRequest bookRequest){
+    public Book mapBookRequestToBook(BookRequest bookRequest) {
         return Book.builder()
                 .name(bookRequest.getName())
                 .isbn(bookRequest.getIsbn())
@@ -40,15 +43,28 @@ public class BookMapper {
                 .shelfCode(bookRequest.getShelfCode())
                 .isActive(bookRequest.getIsActive())
                 .isFeatured(bookRequest.getIsFeatured())
-                .builtIn(bookRequest.getBuiltIn())
                 .build();
     }
 
-    public Book mapBookRequestToUpdatedBook(Long id, BookRequest bookRequest){
-        return mapBookRequestToBook(bookRequest)
-                .toBuilder()
-                .id(id)
+
+    public BookResponse mapBookToUpdatedBookResponse(Book updatedBook) {
+        return BookResponse.builder()
+                .id(updatedBook.getId())
+                .name(updatedBook.getName())
+                .isbn(updatedBook.getIsbn())
+                .authorId(updatedBook.getAuthor().getId())
+                .pageCount(updatedBook.getPageCount())
+                .publishDate(updatedBook.getPublishDate())
+                .categoryId(updatedBook.getCategory().getId())
+                .publisherId(updatedBook.getPublisher().getId())
+                .authorId(updatedBook.getAuthor().getId())
+                .image(updatedBook.getImage())
+                .isLoanable(updatedBook.getIsLoanable())
+                .shelfCode(updatedBook.getShelfCode())
+                .isActive(updatedBook.getIsActive())
+                .isFeatured(updatedBook.getIsFeatured())
+                .createDate(updatedBook.getCreateDate())
+                .builtIn(updatedBook.getBuiltIn())
                 .build();
     }
-
 }

@@ -10,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @RequestMapping("/loans")
@@ -40,13 +39,13 @@ public class LoanController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     @GetMapping("/user/{userId}")
-    public ResponseMessage<Page<LoanResponse>> getLoansForUser(
+    public ResponseMessage<Page<LoanResponse>> getLoans(
             @PathVariable Long userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
             @RequestParam(defaultValue = "desc") String type ){
-        return null; //loanService.getLoansForUser(userId,page,size,sort,type);
+        return loanService.getLoans(userId,page,size,sort,type);
     }
 
 
