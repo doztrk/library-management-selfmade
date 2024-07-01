@@ -152,7 +152,7 @@ public class BookService {
                 .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.CATEGORY_NOT_FOUND,bookRequest.getCategoryId())));
 
 
-        Book updatedBook = bookMapper.mapBookRequestToBook(bookRequest);
+        Book updatedBook = bookMapper.mapBookRequestToUpdatedBook(bookRequest,bookId);
         updatedBook.setAuthor(author);
         updatedBook.setPublisher(publisher);
         updatedBook.setCategory(category);

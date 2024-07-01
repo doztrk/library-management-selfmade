@@ -1,15 +1,18 @@
 package com.doztrk.libraryproject.controller.business;
 
 
+import com.doztrk.libraryproject.payload.request.business.LoanRequest;
 import com.doztrk.libraryproject.payload.response.business.LoanResponse;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.service.business.LoanService;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/loans")
@@ -33,11 +36,11 @@ public class LoanController {
 
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
-    @GetMapping("/{id}")
+    @GetMapping("/{loanId}")
     public ResponseMessage<LoanResponse> getLoanDetailsForAuthenticatedUser(
-            @PathVariable Long id,
+            @PathVariable Long loanId,
             HttpServletRequest httpServletRequest){
-        return loanService.getLoanForAuthenticatedUser(id,httpServletRequest);
+        return loanService.getLoanForAuthenticatedUser(loanId,httpServletRequest);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
@@ -74,7 +77,10 @@ public class LoanController {
         return loanService.getLoanDetailsByLoanId(loanId,page,size,sort,type);
     }
 
-
-
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    @PostMapping
+    public ResponseMessage<LoanResponse> createLoan(@RequestBody @Valid LoanRequest loanRequest){
+        return loanService.createLoan(loanRequest);
+    }
 
 }

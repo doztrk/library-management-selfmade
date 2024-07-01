@@ -15,6 +15,8 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
 
 
+
+    // TODO :Solve  IllegalArgumentException
     @Query(value = "SELECT b FROM Book b " +
             "WHERE (b.active = true) " +
             "AND (:query IS NULL OR (b.name LIKE %:query% OR b.author.name LIKE %:query% OR b.isbn LIKE %:query% OR b.publisher.name LIKE %:query%)) " +
@@ -24,6 +26,7 @@ public interface BookRepository extends JpaRepository<Book,Long> {
     Page<Book> findAllBooks(Pageable pageable, String query, Long categoryId, Long authorId, Long publisherId);
 
 
+    // TODO :Solve  IllegalArgumentException
     @Query(value = "SELECT b FROM Book b " +
             "WHERE (:query IS NULL OR (b.name LIKE %:query% OR b.author.name LIKE %:query% OR b.isbn LIKE %:query% OR b.publisher.name LIKE %:query%)) " +
             "AND (:categoryId IS NULL OR b.category.id = :categoryId) " +

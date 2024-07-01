@@ -1,10 +1,7 @@
 package com.doztrk.libraryproject.payload.mappers;
 
 
-import com.doztrk.libraryproject.entity.concretes.business.Author;
 import com.doztrk.libraryproject.entity.concretes.business.Book;
-import com.doztrk.libraryproject.entity.concretes.business.Category;
-import com.doztrk.libraryproject.entity.concretes.business.Publisher;
 import com.doztrk.libraryproject.payload.request.business.BookRequest;
 import com.doztrk.libraryproject.payload.response.business.BookResponse;
 import org.springframework.stereotype.Component;
@@ -33,6 +30,19 @@ public class BookMapper {
                 .builtIn(book.getBuiltIn()).build();
     }
 
+    public Book mapBookRequestToUpdatedBook(BookRequest bookRequest, Long bookId) {
+        return Book.builder()
+                .id(bookId)
+                .name(bookRequest.getName())
+                .isbn(bookRequest.getIsbn())
+                .pageCount(bookRequest.getPageCount())
+                .image(bookRequest.getImage())
+                .isLoanable(bookRequest.getIsLoanable())
+                .shelfCode(bookRequest.getShelfCode())
+                .isActive(bookRequest.getIsActive())
+                .isFeatured(bookRequest.getIsFeatured())
+                .build();
+    }
     public Book mapBookRequestToBook(BookRequest bookRequest) {
         return Book.builder()
                 .name(bookRequest.getName())
@@ -45,7 +55,6 @@ public class BookMapper {
                 .isFeatured(bookRequest.getIsFeatured())
                 .build();
     }
-
 
     public BookResponse mapBookToUpdatedBookResponse(Book updatedBook) {
         return BookResponse.builder()

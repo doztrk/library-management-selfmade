@@ -1,6 +1,9 @@
 package com.doztrk.libraryproject.service.validator;
 
 import com.doztrk.libraryproject.entity.concretes.business.Book;
+import com.doztrk.libraryproject.entity.concretes.business.Loan;
+import com.doztrk.libraryproject.entity.concretes.user.User;
+import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ConflictException;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
 import com.doztrk.libraryproject.payload.request.business.BookRequest;
@@ -41,14 +44,14 @@ public class BookValidator {
         }
     }
 
-    public void validateParameters(Long categoryId,Long authorId,Long publisherId){
-        if (categoryId != null){
+    public void validateParameters(Long categoryId, Long authorId, Long publisherId) {
+        if (categoryId != null) {
             methodHelper.isCategoryExistsById(categoryId);
         }
-        if (authorId != null){
+        if (authorId != null) {
             methodHelper.isAuthorExistsById(authorId);
         }
-        if (publisherId != null){
+        if (publisherId != null) {
             methodHelper.isPublisherExistsById(publisherId);
         }
     }

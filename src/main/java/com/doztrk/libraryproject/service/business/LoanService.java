@@ -9,6 +9,7 @@ import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.mappers.LoanMapper;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
 import com.doztrk.libraryproject.payload.messages.SuccessMessages;
+import com.doztrk.libraryproject.payload.request.business.LoanRequest;
 import com.doztrk.libraryproject.payload.response.business.LoanResponse;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.repository.business.BookRepository;
@@ -24,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Service
@@ -124,10 +126,10 @@ public class LoanService {
     public ResponseMessage<Page<LoanResponse>> getLoanDetailsByLoanId(Long loanId, int page, int size, String sort, String type) {
         Loan loan = loanRepository
                 .findById(loanId)
-                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND,loanId)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, loanId)));
         User user = userRepository
                 .findByLoanId(
-                        loan.getId()).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND,loanId)));
+                        loan.getId()).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, loanId)));
 
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
@@ -141,5 +143,31 @@ public class LoanService {
                 .object(loanResponsePage)
                 .build();
     }
+
+    public ResponseMessage<LoanResponse> createLoan(LoanRequest loanRequest) {
+        User user = userRepository
+                .findById(loanRequest.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, loanRequest.getUserId())));
+
+        List<Loan> loanList  = loanRepository.findByUserId(user.getId());
+
+
+        loanValidator.canBorrow(user,loanList);//Check if eligible for loan, if not throw exception
+
+        Book book = bookRepository
+                .findById(loanRequest.getBookId())
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, loanRequest.getBookId())));
+        if (!book.getIsLoanable()) {
+            throw new BadRequestException(ErrorMessages.BOOK_IS_NOT_ACTIVE);
+        }
+        loanRepository.save()
+    }
+
+    private boolean hasNoBadRecord(User user){
+        l
+
+
+    }
+
 }
 
