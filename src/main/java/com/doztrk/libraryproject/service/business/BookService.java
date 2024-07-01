@@ -124,6 +124,8 @@ public class BookService {
 
         if (bookToBeDeleted.getIsLoanable().equals(false)) {
             throw new BadRequestException(ErrorMessages.BOOK_HAS_LOAN);
+        } else if (Boolean.TRUE.equals(bookToBeDeleted.getBuiltIn())) {
+            throw new BadRequestException(String.format(ErrorMessages.BOOK_BUILTIN, bookToBeDeleted.getId()));
         } else {
             bookRepository.delete(bookToBeDeleted);
         }
@@ -162,6 +164,5 @@ public class BookService {
                .httpStatus(HttpStatus.OK)
                .object(bookMapper.mapBookToUpdatedBookResponse(updatedBook))
                .build();
-       //TODO:COMPLETE THIS UPDATE
     }
 }

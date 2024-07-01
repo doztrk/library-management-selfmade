@@ -27,6 +27,8 @@ public class ErrorMessages {
 
     public static final String NOT_AUTHORIZED = "Not authorized for this action";
 
+    public static final String BOOK_BUILTIN = "Book with id %s has built-in true";
+
 
 
 
