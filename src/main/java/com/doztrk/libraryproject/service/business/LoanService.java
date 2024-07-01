@@ -40,15 +40,17 @@ public class LoanService {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
         String username = (String) httpServletRequest.getAttribute("username");
         User user = methodHelper.isUserExistByUsername(username);
-        Page<Loan> loanPage = loanRepository.findByUserIdEquals(user.getId(), pageable);
 
+        if (!Boolean.TRUE.equals(methodHelper.checkRole(user.getRoles(),RoleType.MEMBER))){ //checks if the MEMBER is authenticated in USER.
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+        }
+        Page<Loan> loanPage = loanRepository.findByUserId(user.getId(), pageable);
         //Converts loanPage to loanResponse as Page
         Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
             LoanResponse loanResponse = loanMapper.mapLoanToLoanResponse(loan);
             setLoanResponseNotes(loanResponse, loan, user); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
             return loanResponse;
         });
-
         return ResponseMessage.<Page<LoanResponse>>builder()
                 .message(SuccessMessages.LOANS_FOUND)
                 .httpStatus(HttpStatus.OK)
@@ -67,8 +69,7 @@ public class LoanService {
     public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(Long id, HttpServletRequest httpServletRequest) {
         String username = (String) httpServletRequest.getAttribute("username");
         User authenticatedUser = methodHelper.isUserExistByUsername(username);
-        boolean hasAuthentication = methodHelper.checkRole(authenticatedUser.getRoles(),RoleType.MEMBER);
-        if (!hasAuthentication){
+        if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(),RoleType.MEMBER))){
             throw new BadRequestException(String.format(ErrorMessages.NOT_AUTHORIZED));
         }
         Loan loan = loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, id)));
@@ -85,18 +86,23 @@ public class LoanService {
     }
 
     public ResponseMessage<Page<LoanResponse>> getLoans(Long userId, int page, int size, String sort, String type) {
-        User user = userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE,userId)));
-        Pageable pageable = pageableHelper.getPageableWithProperties(page,size,sort,type);
-        Page<Loan> loanPage = loanRepository.findByUserIdEquals(userId,pageable);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, userId)));
 
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+        Page<Loan> loanPage = loanRepository.findByUserId(userId, pageable);
 
+        Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
+            LoanResponse loanResponse = loanMapper.mapLoanToLoanResponseWithBook(loan);
+            setLoanResponseNotes(loanResponse, loan, user);
+            return loanResponse;
+        });
 
-
-
-        return null;//ResponseMessage.<LoanResponse>builder()
-//                .message(SuccessMessages.LOANS_FOUND)
-//                .httpStatus(HttpStatus.OK)
-//                .object(loanPage.map(loan -> loanMapper.mapLoanToLoanResponse()))
+        return ResponseMessage.<Page<LoanResponse>>builder()
+                .message(SuccessMessages.LOANS_FOUND)
+                .httpStatus(HttpStatus.OK)
+                .object(loanResponsePage)
+                .build();
 
     }
 }
