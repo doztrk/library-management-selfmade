@@ -33,7 +33,7 @@ public class LoanController {
 
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping("/{id}")
-    public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(@PathVariable Long id, HttpServletRequest httpServletRequest){
+    public ResponseMessage<LoanResponse> getLoanDetailsForAuthenticatedUser(@PathVariable Long id, HttpServletRequest httpServletRequest){
         return loanService.getLoanForAuthenticatedUser(id,httpServletRequest);
     }
 

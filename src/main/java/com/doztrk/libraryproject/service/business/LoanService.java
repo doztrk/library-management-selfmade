@@ -3,6 +3,7 @@ package com.doztrk.libraryproject.service.business;
 import com.doztrk.libraryproject.entity.concretes.business.Loan;
 import com.doztrk.libraryproject.entity.concretes.user.User;
 import com.doztrk.libraryproject.entity.enums.RoleType;
+import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.mappers.LoanMapper;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
@@ -66,6 +67,10 @@ public class LoanService {
     public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(Long id, HttpServletRequest httpServletRequest) {
         String username = (String) httpServletRequest.getAttribute("username");
         User authenticatedUser = methodHelper.isUserExistByUsername(username);
+        boolean hasAuthentication = methodHelper.checkRole(authenticatedUser.getRoles(),RoleType.MEMBER);
+        if (!hasAuthentication){
+            throw new BadRequestException(String.format(ErrorMessages.NOT_AUTHORIZED));
+        }
         Loan loan = loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, id)));
 
         loanValidator.validateLoanOwner(loan, authenticatedUser); // validates if the user owns the loan, throws exception if not.
