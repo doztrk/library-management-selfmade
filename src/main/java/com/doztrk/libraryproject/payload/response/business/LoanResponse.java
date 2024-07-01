@@ -1,5 +1,6 @@
 package com.doztrk.libraryproject.payload.response.business;
 
+import com.doztrk.libraryproject.entity.concretes.user.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ public class LoanResponse {
     private LocalDateTime returnDate;
     private String notes;
     private BookResponse book;
+    private User user;
+
 
 
 

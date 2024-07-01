@@ -31,22 +31,49 @@ public class LoanController {
         return loanService.getAllLoansForAuthenticatedUser(httpServletRequest,page,size,sort,type);
     }
 
+
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping("/{id}")
-    public ResponseMessage<LoanResponse> getLoanDetailsForAuthenticatedUser(@PathVariable Long id, HttpServletRequest httpServletRequest){
+    public ResponseMessage<LoanResponse> getLoanDetailsForAuthenticatedUser(
+            @PathVariable Long id,
+            HttpServletRequest httpServletRequest){
         return loanService.getLoanForAuthenticatedUser(id,httpServletRequest);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     @GetMapping("/user/{userId}")
-    public ResponseMessage<Page<LoanResponse>> getLoans(
+    public ResponseMessage<Page<LoanResponse>> getAllLoansByUserId(
             @PathVariable Long userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
             @RequestParam(defaultValue = "desc") String type ){
-        return loanService.getLoans(userId,page,size,sort,type);
+        return loanService.getAllLoansByUserId(userId,page,size,sort,type);
     }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    @GetMapping("/book/{bookId}")
+    public ResponseMessage<Page<LoanResponse>> getLoansByBookId(
+            @PathVariable Long bookId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "loanDate") String sort,
+            @RequestParam(defaultValue = "desc") String type ){
+        return loanService.getLoansByBookId(bookId,page,size,sort,type);
+    }
+
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    @GetMapping("/auth/{loanId}")
+    public ResponseMessage<Page<LoanResponse>> getLoanDetailsByLoanId(
+            @PathVariable Long loanId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "loanDate") String sort,
+            @RequestParam(defaultValue = "desc") String type){
+        return loanService.getLoanDetailsByLoanId(loanId,page,size,sort,type);
+    }
+
 
 
 

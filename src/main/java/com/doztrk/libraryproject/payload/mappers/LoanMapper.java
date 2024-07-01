@@ -35,5 +35,16 @@ public class LoanMapper {
                 .build();
     }
 
+    public LoanResponse mapLoanToLoanResponseWithUser(Loan loan){
+        return LoanResponse.builder()
+                .userId(loan.getUser().getId())
+                .bookId(loan.getBook().getId())
+                .loanDate(loan.getLoanDate())
+                .expireDate(loan.getExpireDate())
+                .returnDate(loan.getReturnDate())
+                .user(loan.getUser())
+                .build();
+    }
+
 
 }
