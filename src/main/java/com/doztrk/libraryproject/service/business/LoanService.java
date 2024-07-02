@@ -146,23 +146,22 @@ public class LoanService {
                 .build();
     }
 
-    public ResponseMessage<LoanResponse> createLoan(LoanRequest loanRequest) {
+    public ResponseMessage<LoanResponse> createLoan(LoanRequest loanRequest,Long userId, Long bookId) {
         User user = userRepository
-                .findById(loanRequest.getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, loanRequest.getUserId())));
+                .findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, bookId)));
 
-        List<Loan> loanList  = loanRepository.findByUserId(user.getId());
+        List<Loan> loanList = loanRepository.findByUserId(user.getId());
 
         Book book = bookRepository
-                .findById(loanRequest.getBookId())
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, loanRequest.getBookId())));
+                .findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, bookId)));
         if (!book.getIsLoanable()) {
             throw new BadRequestException(ErrorMessages.BOOK_IS_NOT_ACTIVE);
         }
 
 
-        loanValidator.canBorrow(user,loanList);//Check if eligible for loan, if not throw exception
-        loanValidator.scoreCalculator(user);
+        loanValidator.canBorrow(user, loanList);//Check if eligible for loan, if not throw exception
         Map<String, Integer> borrowingLimits = loanValidator.scoreCalculator(user);
         int maxBooks = borrowingLimits.get("books");
         int loanDays = borrowingLimits.get("days");
@@ -178,6 +177,7 @@ public class LoanService {
         loanRepository.save(loan);
         book.setIsLoanable(false);
         bookRepository.save(book);
+        userRepository.save(user);
 
         return ResponseMessage.<LoanResponse>builder()
                 .message(SuccessMessages.LOAN_CREATED)
@@ -186,5 +186,41 @@ public class LoanService {
                 .build();
     }
 
+    public ResponseMessage<LoanResponse> updateLoan(LoanRequest updateLoanRequest, Long userId, Long bookId,Long loanId) {
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, bookId)));
+
+        List<Loan> loanList = loanRepository.findByUserId(user.getId());
+
+        Book book = bookRepository
+                .findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, bookId)));
+
+        Loan loan = loanRepository
+                .findById(loanId)
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND,loanId)));
+        if (loan.getReturnDate() != null){
+            book.setIsLoanable(true);
+            loan.setReturnDate(updateLoanRequest.getReturnDate());
+            //TODO: Check if user returned the book in time and increase score if so, decrease if not
+        }else{
+            loan.setNotes(updateLoanRequest.getNotes());
+            loan.setExpireDate(updateLoanRequest.getExpireDate());
+        }
+
+        bookRepository.save(book);
+        loanRepository.save(loan);
+        return ResponseMessage.<LoanResponse>builder()
+                .message(SuccessMessages.LOAN_CREATED)
+                .httpStatus(HttpStatus.CREATED)
+                .object(loanMapper.mapLoanToLoanResponseWithBook(loan))
+                .build();
+    }
+
+
+
+
+    }
 }
 

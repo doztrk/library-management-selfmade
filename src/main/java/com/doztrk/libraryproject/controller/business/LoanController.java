@@ -6,7 +6,6 @@ import com.doztrk.libraryproject.payload.response.business.LoanResponse;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
 import com.doztrk.libraryproject.service.business.LoanService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -77,10 +76,19 @@ public class LoanController {
         return loanService.getLoanDetailsByLoanId(loanId,page,size,sort,type);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     @PostMapping
-    public ResponseMessage<LoanResponse> createLoan(@RequestBody @Valid LoanRequest loanRequest){
-        return loanService.createLoan(loanRequest);
+    public ResponseMessage<LoanResponse> createLoan(@RequestBody @Valid LoanRequest loanRequest,Long userId,Long bookId){
+        return loanService.createLoan(loanRequest,userId,bookId);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    @PutMapping("/update")
+    public ResponseMessage<LoanResponse> updateLoan(@RequestBody @Valid LoanRequest updateLoanRequest,
+                                                    @PathVariable Long loanId,
+                                                    Long userId,
+                                                    Long bookId
+    ) {
+        return loanService.updateLoan(updateLoanRequest, userId, bookId);
     }
 
 }
