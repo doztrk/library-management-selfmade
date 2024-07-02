@@ -15,6 +15,8 @@ public class SuccessMessages {
     public static final String BOOK_DELETED = "Book deleted successfully";
 
     public static final String LOANS_FOUND = "Loans found successfully";
+    public static final String LOAN_CREATED = "Loan created successfully";
+
 
 
 }

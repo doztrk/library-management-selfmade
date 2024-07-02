@@ -25,7 +25,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -151,22 +153,37 @@ public class LoanService {
 
         List<Loan> loanList  = loanRepository.findByUserId(user.getId());
 
-
-        loanValidator.canBorrow(user,loanList);//Check if eligible for loan, if not throw exception
-
         Book book = bookRepository
                 .findById(loanRequest.getBookId())
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, loanRequest.getBookId())));
         if (!book.getIsLoanable()) {
             throw new BadRequestException(ErrorMessages.BOOK_IS_NOT_ACTIVE);
         }
-        loanRepository.save()
-    }
-
-    private boolean hasNoBadRecord(User user){
-        l
 
 
+        loanValidator.canBorrow(user,loanList);//Check if eligible for loan, if not throw exception
+        loanValidator.scoreCalculator(user);
+        Map<String, Integer> borrowingLimits = loanValidator.scoreCalculator(user);
+        int maxBooks = borrowingLimits.get("books");
+        int loanDays = borrowingLimits.get("days");
+
+        if (loanList.size() >= maxBooks) {
+            throw new BadRequestException(ErrorMessages.EXCEEDED_LOAN_LIMIT);
+        }
+        LocalDateTime loanDate = LocalDateTime.now();
+        LocalDateTime expireDate = loanDate.plusDays(loanDays);
+
+        Loan loan = loanMapper.mapLoanRequestToLoan(loanRequest, book, user, loanDate, expireDate);
+
+        loanRepository.save(loan);
+        book.setIsLoanable(false);
+        bookRepository.save(book);
+
+        return ResponseMessage.<LoanResponse>builder()
+                .message(SuccessMessages.LOAN_CREATED)
+                .httpStatus(HttpStatus.CREATED)
+                .object(loanMapper.mapLoanToLoanResponseWithBook(loan))
+                .build();
     }
 
 }

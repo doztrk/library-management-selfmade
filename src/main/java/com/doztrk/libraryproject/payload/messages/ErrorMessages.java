@@ -39,6 +39,8 @@ public class ErrorMessages {
     public static final String NOT_FOUND_USER_WITH_ROLE_MESSAGE ="The role information of the user with id %s is not role: %s" ;
     public static final String USER_AND_LOAN_NO_MATCH = "Loan not found with user ID %s";
     public static final String PAST_DUE_LOAN = "User with id %s has past due book return date";
+    public static final String EXCEEDED_LOAN_LIMIT = "User has reached the maximum number of borrowed books";
+
 
 
 
