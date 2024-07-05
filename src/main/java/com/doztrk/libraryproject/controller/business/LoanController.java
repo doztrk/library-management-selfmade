@@ -21,16 +21,16 @@ public class LoanController {
     private final LoanService loanService;
 
 
-
     @PreAuthorize("hasAnyAuthority('MEMBER')")
     @GetMapping // http://localhost:8080/loans?page=1&size=10&sort=loanDate&type=desc
     public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(
-                                                                                HttpServletRequest httpServletRequest,
-                                                                                @RequestParam(defaultValue = "0") int page,
-                                                                                @RequestParam(defaultValue = "20") int size,
-                                                                                @RequestParam(defaultValue = "loanDate") String sort,
-                                                                                @RequestParam(defaultValue = "desc") String type){
-        return loanService.getAllLoansForAuthenticatedUser(httpServletRequest,page,size,sort,type);
+//                                                                                HttpServletRequest httpServletRequest,
+            @RequestBody @Valid Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "loanDate") String sort,
+            @RequestParam(defaultValue = "desc") String type) {
+        return loanService.getAllLoansForAuthenticatedUser(userId, page, size, sort, type);
     }
 
 
@@ -38,8 +38,8 @@ public class LoanController {
     @GetMapping("/{loanId}")
     public ResponseMessage<LoanResponse> getLoanDetailsForAuthenticatedUser(
             @PathVariable Long loanId,
-            HttpServletRequest httpServletRequest){
-        return loanService.getLoanForAuthenticatedUser(loanId,httpServletRequest);
+            HttpServletRequest httpServletRequest) {
+        return loanService.getLoanForAuthenticatedUser(loanId, httpServletRequest );
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
@@ -49,8 +49,8 @@ public class LoanController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
-            @RequestParam(defaultValue = "desc") String type ){
-        return loanService.getAllLoansByUserId(userId,page,size,sort,type);
+            @RequestParam(defaultValue = "desc") String type) {
+        return loanService.getAllLoansByUserId(userId, page, size, sort, type);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
@@ -60,8 +60,8 @@ public class LoanController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
-            @RequestParam(defaultValue = "desc") String type ){
-        return loanService.getLoansByBookId(bookId,page,size,sort,type);
+            @RequestParam(defaultValue = "desc") String type) {
+        return loanService.getLoansByBookId(bookId, page, size, sort, type);
     }
 
 
@@ -72,13 +72,13 @@ public class LoanController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(defaultValue = "loanDate") String sort,
-            @RequestParam(defaultValue = "desc") String type){
-        return loanService.getLoanDetailsByLoanId(loanId,page,size,sort,type);
+            @RequestParam(defaultValue = "desc") String type) {
+        return loanService.getLoanDetailsByLoanId(loanId, page, size, sort, type);
     }
 
     @PostMapping
-    public ResponseMessage<LoanResponse> createLoan(@RequestBody @Valid LoanRequest loanRequest,Long userId,Long bookId){
-        return loanService.createLoan(loanRequest,userId,bookId);
+    public ResponseMessage<LoanResponse> createLoan(@RequestBody @Valid LoanRequest loanRequest, Long userId, Long bookId) {
+        return loanService.createLoan(loanRequest, userId, bookId);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
@@ -88,7 +88,7 @@ public class LoanController {
                                                     Long userId,
                                                     Long bookId
     ) {
-        return loanService.updateLoan(updateLoanRequest, userId, bookId);
+        return loanService.updateLoan(updateLoanRequest, userId, bookId, loanId);
     }
 
 }

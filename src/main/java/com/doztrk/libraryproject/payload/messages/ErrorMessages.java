@@ -31,6 +31,9 @@ public class ErrorMessages {
 
     public static final String BOOK_BUILTIN = "Book with id %s has built-in true";
 
+    public static final String USER_NOT_FOUND = "User not found with id %s";
+
+
 
 
 

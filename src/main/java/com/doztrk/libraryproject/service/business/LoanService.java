@@ -42,10 +42,17 @@ public class LoanService {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
 
-    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
+
+    //We dont have a username in the USER field hence we must get the user from request body userId and verify its' authentication
+    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(/*HttpServletRequest httpServletRequest*/
+            Long userId, int page, int size, String sort, String type) {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
-        String username = (String) httpServletRequest.getAttribute("username");
-        User user = methodHelper.isUserExistByUsername(username);
+       User user =  userRepository
+               .findById(userId)
+               .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,userId)));
+
+//        String username = (String) httpServletRequest.getAttribute("username");
+//        User user = methodHelper.isUserExistByUsername(username);
 
         if (!Boolean.TRUE.equals(methodHelper.checkRole(user.getRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
             throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
@@ -146,7 +153,7 @@ public class LoanService {
                 .build();
     }
 
-    public ResponseMessage<LoanResponse> createLoan(LoanRequest loanRequest,Long userId, Long bookId) {
+    public ResponseMessage<LoanResponse> createLoan(LoanRequest loanRequest, Long userId, Long bookId) {
         User user = userRepository
                 .findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, bookId)));
@@ -186,12 +193,11 @@ public class LoanService {
                 .build();
     }
 
-    public ResponseMessage<LoanResponse> updateLoan(LoanRequest updateLoanRequest, Long userId, Long bookId,Long loanId) {
+    public ResponseMessage<LoanResponse> updateLoan(LoanRequest updateLoanRequest, Long userId, Long bookId, Long loanId) {
         User user = userRepository
                 .findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, bookId)));
 
-        List<Loan> loanList = loanRepository.findByUserId(user.getId());
 
         Book book = bookRepository
                 .findById(bookId)
@@ -199,15 +205,11 @@ public class LoanService {
 
         Loan loan = loanRepository
                 .findById(loanId)
-                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND,loanId)));
-        if (loan.getReturnDate() != null){
-            book.setIsLoanable(true);
-            loan.setReturnDate(updateLoanRequest.getReturnDate());
-            //TODO: Check if user returned the book in time and increase score if so, decrease if not
-        }else{
-            loan.setNotes(updateLoanRequest.getNotes());
-            loan.setExpireDate(updateLoanRequest.getExpireDate());
-        }
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, loanId)));
+
+
+        updateLoanDetails(loan, book, user, updateLoanRequest);
+
 
         bookRepository.save(book);
         loanRepository.save(loan);
@@ -218,9 +220,23 @@ public class LoanService {
                 .build();
     }
 
+    private void updateLoanDetails(Loan loan, Book book, User user, LoanRequest updateLoanRequest) {
+        if (loan.getReturnDate() != null) {
+            book.setIsLoanable(true);
+            loan.setReturnDate(updateLoanRequest.getReturnDate());
 
+            if (loan.getReturnDate().isAfter(loan.getExpireDate())) {
+                user.setScore(user.getScore() - 1);
+            } else {
+                user.setScore(user.getScore() + 1);
+            }
 
-
+        } else {
+            loan.setNotes(updateLoanRequest.getNotes());
+            loan.setExpireDate(updateLoanRequest.getExpireDate());
+        }
     }
+
+
 }
 

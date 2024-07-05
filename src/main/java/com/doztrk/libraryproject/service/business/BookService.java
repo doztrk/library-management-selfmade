@@ -42,27 +42,27 @@ public class BookService {
 
 
 
-
-    public Page<BookResponse> getBooksByPage(HttpServletRequest httpServletRequest,
-                                             String query, Long categoryId, Long authorId, Long publisherId,
-                                             Integer page, Integer size, String sort, String type) {
-
-        if (query.isEmpty() && categoryId == null && authorId == null && publisherId == null) {
-            throw new IllegalArgumentException("At least one parameter is needed");
-        }
-        bookValidator.validateParameters(categoryId, authorId, publisherId);
-
-        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
-
-        boolean isAdmin = httpServletRequest.isUserInRole("ADMIN");
-
-        Page<Book> booksByPage = isAdmin
-                ? bookRepository.findAllBooksAdmin(pageable, query, categoryId, authorId, publisherId)
-                : bookRepository.findAllBooks(pageable, query, categoryId, authorId, publisherId);
-
-        return booksByPage.map(bookMapper::mapBookToBookResponse);
-        //TODO: CHANGE RESPONSE
-    }
+//TODO:getBooksByPage
+//    public Page<BookResponse> getBooksByPage(HttpServletRequest httpServletRequest,
+//                                             String query, Long categoryId, Long authorId, Long publisherId,
+//                                             Integer page, Integer size, String sort, String type) {
+//
+//        if (query.isEmpty() && categoryId == null && authorId == null && publisherId == null) {
+//            throw new IllegalArgumentException("At least one parameter is needed");
+//        }
+//        bookValidator.validateParameters(categoryId, authorId, publisherId);
+//
+//        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+//
+//        boolean isAdmin = httpServletRequest.isUserInRole("ADMIN");
+//
+//        Page<Book> booksByPage = isAdmin
+//                ? bookRepository.findAllBooksAdmin(pageable, query, categoryId, authorId, publisherId)
+//                : bookRepository.findAllBooks(pageable, query, categoryId, authorId, publisherId);
+//
+//        return booksByPage.map(bookMapper::mapBookToBookResponse);
+//        //TODO: CHANGE RESPONSE
+//    }
 
     public ResponseMessage<BookResponse> getBookById(Long id) {
         Book bookFound = bookRepository
