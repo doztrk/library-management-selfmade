@@ -44,24 +44,24 @@ public class LoanService {
 
 
     //We dont have a username in the USER field hence we must get the user from request body userId and verify its' authentication
-    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(/*HttpServletRequest httpServletRequest*/
-            Long userId, int page, int size, String sort, String type) {
+    public ResponseMessage<Page<LoanResponse>> getAllLoansForAuthenticatedUser(
+            HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
+         String email = (String) httpServletRequest.getAttribute("email");
+
+       User authenticatedUser =  userRepository
+               .findByEmail(email)
+               .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,email)));
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
-       User user =  userRepository
-               .findById(userId)
-               .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,userId)));
 
-//        String username = (String) httpServletRequest.getAttribute("username");
-//        User user = methodHelper.isUserExistByUsername(username);
 
-        if (!Boolean.TRUE.equals(methodHelper.checkRole(user.getRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
+        if (!Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
             throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
         }
-        Page<Loan> loanPage = loanRepository.findByUserId(user.getId(), pageable);
+        Page<Loan> loanPage = loanRepository.findByUserId(authenticatedUser.getId(), pageable);
         //Converts loanPage to loanResponse as Page
         Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
             LoanResponse loanResponse = loanMapper.mapLoanToLoanResponseWithBook(loan);
-            setLoanResponseNotes(loanResponse, loan, user); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
+            setLoanResponseNotes(loanResponse, loan, authenticatedUser); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
             return loanResponse;
         });
         return ResponseMessage.<Page<LoanResponse>>builder()
@@ -80,8 +80,11 @@ public class LoanService {
     }
 
     public ResponseMessage<LoanResponse> getLoanForAuthenticatedUser(Long id, HttpServletRequest httpServletRequest) {
-        String username = (String) httpServletRequest.getAttribute("username");
-        User authenticatedUser = methodHelper.isUserExistByUsername(username);
+        String email = (String) httpServletRequest.getAttribute("email");
+        User authenticatedUser = userRepository
+                .findByEmail(email)
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,email)));
+
         if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) {
             throw new BadRequestException(String.format(ErrorMessages.NOT_AUTHORIZED));
         }

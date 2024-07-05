@@ -42,13 +42,13 @@ public class MethodHelper {
         return publisherRepository.findById(publisherId).orElseThrow(() -> new ResourceNotFoundException(ErrorMessages.PUBLISHER_NOT_FOUND));
     }
 
-    public User isUserExistByUsername(String userName) {
-        User user = userRepository.findByUsername(userName);
-        if (user.getId() == null) {
-            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND_USER_MESSAGE);
-        }
-        return user;
-    }
+//    public User isUserExistByUsername(String userName) {
+//        User user = userRepository.findByUsername(userName);
+//        if (user.getId() == null) {
+//            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND_USER_MESSAGE);
+//        }
+//        return user;
+//    }
 
 
     public boolean checkRole(Set<Role> roles, RoleType roleType) {

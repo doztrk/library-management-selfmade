@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository  extends JpaRepository<User,Long> {
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, Long> {
+    // User findByUsername(String username);
 
     @Query("SELECT u FROM User u JOIN u.loanList l WHERE l.id = :loanId")
-    Optional<User> findByLoanId(@Param("loanId") Long loanId);}
+    Optional<User> findByLoanId(@Param("loanId") Long loanId);
+
+   Optional<User>  findByEmail(String email);
+}
