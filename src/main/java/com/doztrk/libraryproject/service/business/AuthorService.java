@@ -1,6 +1,7 @@
 package com.doztrk.libraryproject.service.business;
 
 import com.doztrk.libraryproject.entity.concretes.business.Author;
+import com.doztrk.libraryproject.entity.concretes.business.Category;
 import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ConflictException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
@@ -72,15 +73,38 @@ public class AuthorService {
                 authorRepository.findById(authorId)
                         .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.AUTHOR_NOT_FOUND, authorId)));
 
+
+        //TODO Might wanna go to book repo to find out if it has related records to author.
         if (!author.getBookList().isEmpty()) {
             throw new BadRequestException(String.format(ErrorMessages.AUTHOR_HAS_BOOKS_ASSIGNED, author.getId()));
+        } else if (Boolean.TRUE.equals(author.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
         }
+
         authorRepository.delete(author);
+
         AuthorResponse authorResponse = authorMapper.mapAuthorToAuthorResponse(author);
         return ResponseMessage.<AuthorResponse>builder()
                 .message(SuccessMessages.AUTHOR_DELETED)
                 .httpStatus(HttpStatus.OK)
                 .object(authorResponse)
+                .build();
+    }
+
+    public ResponseMessage<AuthorResponse> updateAuthor(AuthorRequest updateAuthorRequest, Long authorId) {
+
+        Author author =
+                authorRepository
+                        .findById(authorId)
+                        .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.AUTHOR_NOT_FOUND, authorId)));
+
+
+        Author authorToBeUpdated = authorMapper.mapAuthorUpdateRequestToAuthor(updateAuthorRequest, author);
+
+        return ResponseMessage.<AuthorResponse>builder()
+                .message(SuccessMessages.AUTHOR_UPDATED)
+                .httpStatus(HttpStatus.OK)
+                .object(authorMapper.mapAuthorToAuthorResponse(authorToBeUpdated))
                 .build();
     }
 }

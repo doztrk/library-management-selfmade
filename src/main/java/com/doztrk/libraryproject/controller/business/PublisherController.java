@@ -51,12 +51,9 @@ public class PublisherController {
 
     @DeleteMapping("/{publisherId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseMessage<PublisherResponse>deletePublisher(@PathVariable Long publisherId){
+    public ResponseMessage<PublisherResponse> deletePublisher(@PathVariable Long publisherId) {
         return publisherService.deletePublisher(publisherId);
     }
-
-
-
 
 
 }

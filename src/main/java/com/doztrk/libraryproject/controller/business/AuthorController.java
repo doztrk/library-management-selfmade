@@ -31,19 +31,26 @@ public class AuthorController {
     }
 
     @GetMapping("/{authorId}")
-    public ResponseMessage<AuthorResponse> getAuthorById(@PathVariable Long authorId){
+    public ResponseMessage<AuthorResponse> getAuthorById(@PathVariable Long authorId) {
         return authorService.getAuthorById(authorId);
     }
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseMessage<AuthorResponse> createAuthor(@RequestBody @Valid AuthorRequest authorRequest){
+    public ResponseMessage<AuthorResponse> createAuthor(@RequestBody @Valid AuthorRequest authorRequest) {
         return authorService.createAuthor(authorRequest);
     }
 
     @DeleteMapping("/{authorId}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseMessage<AuthorResponse> deleteAuthor(@PathVariable Long authorId){
+    public ResponseMessage<AuthorResponse> deleteAuthor(@PathVariable Long authorId) {
         return authorService.deleteAuthor(authorId);
+    }
+
+
+    @PutMapping("/{authorId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public ResponseMessage<AuthorResponse> updateAuthor(@RequestBody @Valid AuthorRequest updateAuthorRequest, @PathVariable Long authorId) {
+        return authorService.updateAuthor(updateAuthorRequest,authorId);
     }
 }

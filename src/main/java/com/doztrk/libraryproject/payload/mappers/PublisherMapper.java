@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PublisherMapper {
 
 
-    public PublisherResponse mapPublisherToPublisherResponse(Publisher publisher){
+    public PublisherResponse mapPublisherToPublisherResponse(Publisher publisher) {
 
         return PublisherResponse.builder()
                 .id(publisher.getId())
@@ -17,17 +17,25 @@ public class PublisherMapper {
                 .build();
     }
 
-    public Publisher mapPublisherRequestToPublisher(PublisherRequest publisherRequest){
+    public Publisher mapPublisherRequestToPublisher(PublisherRequest publisherRequest) {
 
         return Publisher.builder()
-                .name(publisherRequest.getPublisherName())
+                .name(publisherRequest.getName())
                 .build();
     }
 
     public Publisher mapUpdatePublisherRequestToPublisher(PublisherRequest updatePublisherRequest) {
         return Publisher.builder()
-                .pub
+                .name(updatePublisherRequest.getName())
+                .builtIn(updatePublisherRequest.getBuiltIn())
+                .build();
+    }
 
-                .build()
+    public Publisher mapPublisherUpdateRequestToPublisher(PublisherRequest updatePublisherRequest, Long publisherId) {
+        return Publisher.builder()
+                .id(publisherId)
+                .name(updatePublisherRequest.getName())
+                .builtIn(updatePublisherRequest.getBuiltIn())
+                .build();
     }
 }

@@ -7,6 +7,8 @@ import java.util.Locale;
 public class ErrorMessages {
 
 
+    public static final String EMAIL_NOT_FOUND = "Email with this %s field not found" ;
+
     private ErrorMessages() {
     }
 
@@ -31,7 +33,7 @@ public class ErrorMessages {
     public static final String BOOK_HAS_LOAN = "Book you are trying to delete has loan";
     public static final String LOAN_NOT_FOUND = "Loan with id %s is not found";
 
-    public static final String NOT_AUTHORIZED = "Not authorized for this action";
+    public static final String NOT_AUTHORIZED = "Not authorized for this action, builtIn value is set to true";
 
     public static final String BOOK_BUILTIN = "Book with id %s has built-in true";
 
@@ -46,6 +48,9 @@ public class ErrorMessages {
     public static final String EXCEEDED_LOAN_LIMIT = "User has reached the maximum number of borrowed books";
 
     public static final String PUBLISHER_HAS_BOOKS_ASSIGNED = "Pushier with id %s has books assigned to it.";
+
+    public static final String CATEGORY_EXISTS ="Category you are trying to create with name %s already exists" ;
+    public static final String CATEGORY_HAS_BOOKS_ASSIGNED = "Category you are trying to delete with ID %s  has books assigned to it";
 
 
 }
