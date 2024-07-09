@@ -3,6 +3,7 @@ package com.doztrk.libraryproject.service.user;
 import com.doztrk.libraryproject.entity.concretes.user.User;
 import com.doztrk.libraryproject.entity.concretes.user.UserRole;
 import com.doztrk.libraryproject.entity.enums.RoleType;
+import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.mappers.UserMapper;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
@@ -42,27 +43,19 @@ public class UserService {
     private final LoanRepository loanRepository;
     private final LoanService loanService;
 
-    public ResponseMessage<UserResponse> register(UserRequest userRequest, String userRole) {
+    public ResponseMessage<UserResponse> register(UserRequest userRequest) {
         uniquePropertyValidator.checkDuplicate(userRequest.getEmail(), userRequest.getPhone());
 
         User user = userMapper.mapUserRequestToUser(userRequest);
 
-        if (userRole.equals(RoleType.ADMIN.name())) {
-            Set<UserRole> roles = new HashSet<>();
-            UserRole adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN)
-                    .orElseThrow(() -> new RuntimeException("Admin role not found"));
-            roles.add(adminRole);
-            user.setUserRoles(roles);
-            user.setBuiltIn(true);
-        } else {
-            // Handle other roles or default role assignment
-            Set<UserRole> roles = new HashSet<>();
-            UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER)
-                    .orElseThrow(() -> new RuntimeException("Member role not found"));
-            roles.add(memberRole);
-            user.setUserRoles(roles);
-        }
+        Set<UserRole> roles = new HashSet<>();
+        UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER)
+                .orElseThrow(() -> new RuntimeException("Member role not found"));
+        roles.add(memberRole);
+        user.setUserRoles(roles);
+
         userRepository.save(user);
+
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_REGISTERED)
                 .httpStatus(HttpStatus.OK)
@@ -118,6 +111,43 @@ public class UserService {
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_FOUND)
                 .httpStatus(HttpStatus.OK)
+                .object(userMapper.mapUserToUserResponse(user))
+                .build();
+    }
+
+    public ResponseMessage<UserResponse> createUser(UserRequest userRequest) {
+        User user = userMapper.mapUserRequestToUser(userRequest);
+
+        if (userRepository.existsByEmail(userRequest.getEmail())) {
+            throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getEmail()));
+        }
+
+        if (userRepository.existsByPhone(userRequest.getPhone())) {
+            throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getPhone()));
+        }
+
+        Set<UserRole> userRoles = new HashSet<>();
+
+        if (userRequest.getUserRole().equals(RoleType.ADMIN.getName())) {
+            UserRole adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN)
+                    .orElseThrow(() -> new RuntimeException("Admin role not found"));
+            userRoles.add(adminRole);
+        } else if (userRequest.getUserRole().equals(RoleType.EMPLOYEE.getName())) {
+            UserRole employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE)
+                    .orElseThrow(() -> new RuntimeException("Employee role not found"));
+            userRoles.add(employeeRole);
+        } else {
+            UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER)
+                    .orElseThrow(() -> new RuntimeException("Member role not found"));
+            userRoles.add(memberRole);
+        }
+
+        user.setUserRoles(userRoles);
+        userRepository.save(user);
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_CREATED)
+                .httpStatus(HttpStatus.CREATED)
                 .object(userMapper.mapUserToUserResponse(user))
                 .build();
     }

@@ -18,7 +18,7 @@ public class UserMapper {
                 .lastName(userRequest.getLastName())
                 .adress(userRequest.getAdress())
                 .phone(userRequest.getPhone())
-                .birthDate(userRequest.getBirthDay())
+                .birthDate(userRequest.getBirthDate())
                 .email(userRequest.getEmail())
                 .password(userRequest.getPassword())
                 .build();

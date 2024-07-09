@@ -35,6 +35,7 @@ public class ErrorMessages {
 
     public static final String USER_NOT_FOUND_WITH_EMAIL = "User not found with email %s";
     public static final String USER_NOT_FOUND_WITH_ID = "User not found with ID %s";
+    public static final String USER_ALREADY_EXISTS_WITH_EMAIL = "User with this E-mail %s already exists" ;
 
 
 

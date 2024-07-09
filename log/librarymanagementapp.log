@@ -40,4 +40,35 @@
 ""2024-07-09 14:09:46,705 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m14s651ms).
 ""2024-07-09 14:13:25,034 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m38s329ms).
 ""2024-07-09 14:17:19,697 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m54s631ms).
+""2024-07-09 14:57:08,181 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m48s187ms).
+""2024-07-09 14:59:15,774 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m7s594ms).
+""2024-07-09 16:22:31,054 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m6s123ms).
+""2024-07-09 16:25:56,754 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m55s698ms).
+""2024-07-09 16:36:30,571 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m33s817ms).
+""2024-07-09 16:48:33,965 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-09 16:48:33,968 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-09 16:48:33,971 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2024-07-09 16:48:42,153 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 52806 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
+""2024-07-09 16:48:42,155 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-09 16:48:42,457 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-09 16:48:42,486 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 25 ms. Found 7 JPA repository interfaces.
+""2024-07-09 16:48:42,724 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-09 16:48:42,728 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-09 16:48:42,729 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-09 16:48:42,764 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-09 16:48:42,764 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 587 ms
+""2024-07-09 16:48:42,828 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-09 16:48:42,851 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-09 16:48:42,910 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-09 16:48:42,946 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-09 16:48:43,044 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-09 16:48:43,050 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-09 16:48:43,421 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-09 16:48:43,424 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-09 16:48:43,859 INFO  [main] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44e7c06b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@24a807a9, org.springframework.security.web.context.SecurityContextPersistenceFilter@58647985, org.springframework.security.web.header.HeaderWriterFilter@68303c3e, org.springframework.web.filter.CorsFilter@aca594d, org.springframework.security.web.authentication.logout.LogoutFilter@3a66d97e, com.doztrk.libraryproject.security.jwt.AuthTokenFilter@7a0f43dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69e8b711, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@764a3867, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@736f2fb8, org.springframework.security.web.session.SessionManagementFilter@42028589, org.springframework.security.web.access.ExceptionTranslationFilter@4d93e5bf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@10ae002e]
+""2024-07-09 16:48:43,941 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
+""2024-07-09 16:48:43,945 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Started LibraryProjectApplication in 1.973 seconds (JVM running for 2.161)
+""2024-07-09 16:48:55,871 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-09 16:48:55,872 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-09 16:48:55,873 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
 "

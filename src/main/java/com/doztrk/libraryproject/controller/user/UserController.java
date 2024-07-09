@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseMessage<UserResponse> register(@RequestBody @Valid UserRequest userRequest, String role) {
-        return userService.register(userRequest, role);
+        return userService.register(userRequest);
     }
 
     @GetMapping
@@ -32,7 +32,7 @@ public class UserController {
         return userService.getAuthenticatedUser(httpServletRequest);
     }
 
-    @GetMapping
+    @GetMapping("/loans")
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE','MEMBER')")
     public ResponseMessage<Page<UserResponseWithBookAndLoan>> getLoansForAuthenticatedUser(
             HttpServletRequest httpServletRequest,
@@ -41,22 +41,6 @@ public class UserController {
             @RequestParam(value = "sort", defaultValue = "startDate") String sort,
             @RequestParam(value = "type", defaultValue = "desc") String type) {
         return userService.getLoansForAuthenticatedUser(httpServletRequest, page, size, sort, type);
-    }
-
-    @GetMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
-    public ResponseMessage<Page<UserResponse>> getAllUsers(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "20") int size,
-            @RequestParam(value = "sort", defaultValue = "startDate") String sort,
-            @RequestParam(value = "type", defaultValue = "desc") String type) {
-        return userService.getAllUsers(page,size,sort,type);
-    }
-
-    @GetMapping("/{userId}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
-    public ResponseMessage<UserResponse> getUserById(@PathVariable Long userId){
-        return userService.getUserById(userId);
     }
 
 

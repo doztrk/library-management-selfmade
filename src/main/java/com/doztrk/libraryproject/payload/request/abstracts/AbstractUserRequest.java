@@ -32,7 +32,7 @@ public abstract class AbstractUserRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Past(message = "Your birthday can not be in the future")
-    private Date birthDay;
+    private Date birthDate;
 
     @NotNull
     @Size(min = 10, max = 100)
@@ -43,8 +43,7 @@ public abstract class AbstractUserRequest {
     @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Please enter a valid phone number in the format 999-999-9999")
     private String phone;
 
-
-    private String userRole = RoleType.MEMBER.getName();
+    private String userRole;
 
 
 
