@@ -15,21 +15,27 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Role {
+public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "userRoles")
     private Set<User> userSet;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
+    @Column(nullable = false)
+    private String roleName;
+
+    @PrePersist
+    public void prePersist() {
+        if (roleName == null && roleType != null) {
+            this.roleName = roleType.getName();
+        }
+    }
 
 }

@@ -43,7 +43,7 @@ public class User {
     @Column(nullable = false)
     private Date birthDate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -52,11 +52,11 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime createDate;
 
-    @Column(nullable = true)
+    @Column
     private String resetPasswordCode;
 
     @Column(nullable = false)
-    private Boolean builtIn;
+    private Boolean builtIn = false;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Loan> loanList;
@@ -67,7 +67,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles;
+    private Set<UserRole> userRoles;
 
-
+    @PrePersist
+    public void prePersist() {
+        this.createDate = LocalDateTime.now();
+    }
 }

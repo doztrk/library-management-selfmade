@@ -1,6 +1,7 @@
 package com.doztrk.libraryproject.payload.request.abstracts;
 
 
+import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -30,7 +32,7 @@ public abstract class AbstractUserRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Past(message = "Your birthday can not be in the future")
-    private String birthDay;
+    private Date birthDay;
 
     @NotNull
     @Size(min = 10, max = 100)
@@ -40,6 +42,9 @@ public abstract class AbstractUserRequest {
     @Size(min = 12, max = 12, message = "Your phone number should be 12 characters long")
     @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Please enter a valid phone number in the format 999-999-9999")
     private String phone;
+
+
+    private String userRole = RoleType.MEMBER.getName();
 
 
 

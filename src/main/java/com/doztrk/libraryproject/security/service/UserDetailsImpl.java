@@ -1,6 +1,6 @@
 package com.doztrk.libraryproject.security.service;
 
-import com.doztrk.libraryproject.entity.concretes.user.Role;
+import com.doztrk.libraryproject.entity.concretes.user.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,12 +26,12 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
 
-    public UserDetailsImpl(Long id, String email, String password, Set<Role> roles) {
+    public UserDetailsImpl(Long id, String email, String password, Set<UserRole> userRoles) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.authorities = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+        this.authorities = userRoles.stream()
+                .map(userRole -> new SimpleGrantedAuthority(userRole.getRoleName()))
                 .collect(Collectors.toList());
     }
 

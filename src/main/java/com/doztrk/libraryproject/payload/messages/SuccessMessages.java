@@ -33,6 +33,8 @@ public class SuccessMessages {
     public static final String CATEGORY_UPDATED = "Category has been updated successfully" ;
     public static final String CATEGORY_DELETED = "Category has been deleted successfully";
 
+    public static final String USER_REGISTERED = "User has been registered successfully";
+    public static final String USER_FOUND = "User has been found successfully";
 
 
 

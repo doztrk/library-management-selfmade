@@ -1,9 +1,5 @@
 package com.doztrk.libraryproject.payload.messages;
 
-import org.springframework.stereotype.Component;
-
-import java.util.Locale;
-
 public class ErrorMessages {
 
 
@@ -37,7 +33,9 @@ public class ErrorMessages {
 
     public static final String BOOK_BUILTIN = "Book with id %s has built-in true";
 
-    public static final String USER_NOT_FOUND = "User not found with email %s";
+    public static final String USER_NOT_FOUND_WITH_EMAIL = "User not found with email %s";
+    public static final String USER_NOT_FOUND_WITH_ID = "User not found with ID %s";
+
 
 
     public static final String NOT_FOUND_USER_MESSAGE = "User not found with id %s ";
@@ -47,10 +45,14 @@ public class ErrorMessages {
     public static final String PAST_DUE_LOAN = "User with id %s has past due book return date";
     public static final String EXCEEDED_LOAN_LIMIT = "User has reached the maximum number of borrowed books";
 
+
     public static final String PUBLISHER_HAS_BOOKS_ASSIGNED = "Pushier with id %s has books assigned to it.";
 
     public static final String CATEGORY_EXISTS ="Category you are trying to create with name %s already exists" ;
     public static final String CATEGORY_HAS_BOOKS_ASSIGNED = "Category you are trying to delete with ID %s  has books assigned to it";
+
+    public static final String ALREADY_REGISTER_MESSAGE_PHONE = "A User with this phone %s already exists";
+    public static final String ALREADY_REGISTER_MESSAGE_EMAIL = "A User with this E-mail %s already exists";
 
 
 }

@@ -50,18 +50,18 @@ public class LoanService {
 
        User authenticatedUser =  userRepository
                .findByEmail(email)
-               .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,email)));
+               .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL,email)));
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
 
-        if (!Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
+        if (!Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getUserRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
             throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
         }
         Page<Loan> loanPage = loanRepository.findByUserId(authenticatedUser.getId(), pageable);
         //Converts loanPage to loanResponse as Page
         Page<LoanResponse> loanResponsePage = loanPage.map(loan -> {
             LoanResponse loanResponse = loanMapper.mapLoanToLoanResponseWithBook(loan);
-            setLoanResponseNotes(loanResponse, loan, authenticatedUser); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
+            setLoanResponseNotes(loanResponse, loan, authenticatedUser); // sets the book if the user has 'ADMIN' or 'EMPLOYEE' userRoles.
             return loanResponse;
         });
         return ResponseMessage.<Page<LoanResponse>>builder()
@@ -72,7 +72,7 @@ public class LoanService {
     }
 
     private void setLoanResponseNotes(LoanResponse loanResponse, Loan loan, User user) { // Set notes if the role is ADMIN or EMPLOYEE
-        if (methodHelper.checkRole(user.getRoles(), RoleType.ADMIN) || methodHelper.checkRole(user.getRoles(), RoleType.EMPLOYEE)) {
+        if (methodHelper.checkRole(user.getUserRoles(), RoleType.ADMIN) || methodHelper.checkRole(user.getUserRoles(), RoleType.EMPLOYEE)) {
             loanResponse.setNotes(loan.getNotes());
         } else {
             loanResponse.setNotes(null);
@@ -83,16 +83,16 @@ public class LoanService {
         String email = (String) httpServletRequest.getAttribute("email");
         User authenticatedUser = userRepository
                 .findByEmail(email)
-                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND,email)));
+                .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL,email)));
 
-        if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) {
+        if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getUserRoles(), RoleType.MEMBER))) {
             throw new BadRequestException(String.format(ErrorMessages.NOT_AUTHORIZED));
         }
         Loan loan = loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, id)));
 
         loanValidator.validateLoanOwner(loan, authenticatedUser); // validates if the user owns the loan, throws exception if not.
         LoanResponse loanResponse = loanMapper.mapLoanToLoanResponseWithBook(loan);
-        setLoanResponseNotes(loanResponse, loan, authenticatedUser); //sets the book if the user has 'ADMIN' or 'EMPLOYEE' roles.
+        setLoanResponseNotes(loanResponse, loan, authenticatedUser); //sets the book if the user has 'ADMIN' or 'EMPLOYEE' userRoles.
 
         return ResponseMessage.<LoanResponse>builder()
                 .message(SuccessMessages.LOANS_FOUND)
