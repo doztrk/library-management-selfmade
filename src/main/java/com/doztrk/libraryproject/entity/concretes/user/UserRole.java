@@ -21,7 +21,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(mappedBy = "userRoles")
+    @ManyToMany(mappedBy = "userRoles",cascade = CascadeType.REMOVE)
     private Set<User> userSet;
 
     @Column(nullable = false)

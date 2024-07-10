@@ -55,8 +55,17 @@ public class UserControllerCustom {
     @PutMapping("/{userId}")
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     public ResponseMessage<UserResponse> updateUser(@RequestBody @Valid UserRequest userUpdateRequest, @PathVariable  Long userId, HttpServletRequest httpServletRequest){
-        return userService.updateUser(userUpdateRequest,userId);
+        return userService.updateUser(userUpdateRequest,userId,httpServletRequest);
     }
+
+
+    @DeleteMapping("/{userId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public ResponseMessage<UserResponse> deleteUser(@PathVariable Long userId){
+        return userService.deleteUser(userId);
+    }
+
+
 
 
 }

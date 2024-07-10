@@ -37,6 +37,8 @@ public class SuccessMessages {
     public static final String USER_FOUND = "User has been found successfully";
     public static final String USER_CREATED = "User has been created successfully";
     public static final String USER_UPDATED = "User has been updated successfully";
+    public static final String USER_DELETED = "User has been deleted successfully";
+
 
 
 

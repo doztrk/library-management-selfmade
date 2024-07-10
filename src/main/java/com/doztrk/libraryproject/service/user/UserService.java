@@ -202,4 +202,26 @@ public class UserService {
                 .object(userMapper.mapUserToUserResponse(updatedUser))
                 .build();
     }
+
+    public ResponseMessage<UserResponse> deleteUser(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.USER_NOT_FOUND_WITH_ID));
+
+        if (user.getBuiltIn()) {
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+        }
+
+        if (!loanRepository.findByUserId(userId).isEmpty()) {
+            throw new BadRequestException(String.format(ErrorMessages.USER_HAS_LOAN, userId));
+        }
+
+        userRepository.delete(user);
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_DELETED)
+                .httpStatus(HttpStatus.OK)
+                .object(userMapper.mapUserToUserResponse(user))
+                .build();
+    }
 }
