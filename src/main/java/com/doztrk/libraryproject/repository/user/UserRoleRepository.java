@@ -5,7 +5,12 @@ import com.doztrk.libraryproject.entity.enums.RoleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface UserRoleRepository extends JpaRepository<UserRole,Long> {
     Optional<UserRole> findByRoleType(RoleType roleType);
+
+    Set<UserRole> findByRoleTypeIn(Set<RoleType> userRoles);
+
+    Optional<UserRole> findByEnumRoleEquals(RoleType roleType);
 }

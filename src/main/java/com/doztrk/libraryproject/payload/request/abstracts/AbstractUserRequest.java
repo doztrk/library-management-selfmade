@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -43,7 +44,8 @@ public abstract class AbstractUserRequest {
     @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Please enter a valid phone number in the format 999-999-9999")
     private String phone;
 
-    private String userRole;
+    @NotNull
+    private String roleName;
 
 
 

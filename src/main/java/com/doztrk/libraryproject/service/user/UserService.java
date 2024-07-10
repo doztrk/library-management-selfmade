@@ -42,6 +42,8 @@ public class UserService {
     private final PageableHelper pageableHelper;
     private final LoanRepository loanRepository;
     private final LoanService loanService;
+    private final UserRoleService userRoleService;
+
 
     public ResponseMessage<UserResponse> register(UserRequest userRequest) {
         uniquePropertyValidator.checkDuplicate(userRequest.getEmail(), userRequest.getPhone());
@@ -49,8 +51,10 @@ public class UserService {
         User user = userMapper.mapUserRequestToUser(userRequest);
 
         Set<UserRole> roles = new HashSet<>();
-        UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER)
-                .orElseThrow(() -> new RuntimeException("Member role not found"));
+        UserRole memberRole = userRoleRepository
+                .findByRoleType(RoleType.MEMBER)
+                .orElseThrow(
+                        () -> new RuntimeException("Member role not found"));
         roles.add(memberRole);
         user.setUserRoles(roles);
 
@@ -64,10 +68,12 @@ public class UserService {
     }
 
     public ResponseMessage<UserResponse> getAuthenticatedUser(HttpServletRequest httpServletRequest) {
+
         String userInfo = (String) httpServletRequest.getAttribute("username");
-        User user =
-                userRepository
-                        .findByEmail(userInfo).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL, userInfo)));
+        User user = userRepository
+                .findByEmail(userInfo)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        (String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL, userInfo)));
 
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_FOUND)
@@ -78,12 +84,18 @@ public class UserService {
 
 
     public ResponseMessage<Page<UserResponseWithBookAndLoan>> getLoansForAuthenticatedUser(HttpServletRequest httpServletRequest, int page, int size, String sort, String type) {
+
         String userInfo = (String) httpServletRequest.getAttribute("username");
-        User user = userRepository.findByEmail(userInfo).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL, userInfo)));
+        User user = userRepository
+                .findByEmail(userInfo)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        (String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL, userInfo)));
 
         ResponseMessage<Page<LoanResponse>> loanResponse = loanService.getAllLoansForAuthenticatedUser(httpServletRequest, page, size, sort, type);
 
-        Page<UserResponseWithBookAndLoan> userResponsePage = loanResponse.getObject().map(loan -> userMapper.mapUserWithBookToUserResponseWithBookAndLoan(user, loan));
+        Page<UserResponseWithBookAndLoan> userResponsePage = loanResponse
+                .getObject()
+                .map(loan -> userMapper.mapUserWithBookToUserResponseWithBookAndLoan(user, loan));
 
         return ResponseMessage.<Page<UserResponseWithBookAndLoan>>builder()
                 .message(SuccessMessages.LOANS_FOUND)
@@ -93,6 +105,7 @@ public class UserService {
     }
 
     public ResponseMessage<Page<UserResponse>> getAllUsers(int page, int size, String sort, String type) {
+
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
         Page<User> userPage = userRepository.findAll(pageable);
 
@@ -104,9 +117,11 @@ public class UserService {
     }
 
     public ResponseMessage<UserResponse> getUserById(Long userId) {
+
         User user = userRepository
                 .findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_ID, userId)));
+                .orElseThrow(() -> new ResourceNotFoundException
+                        (String.format(ErrorMessages.USER_NOT_FOUND_WITH_ID, userId)));
 
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_FOUND)
@@ -116,29 +131,30 @@ public class UserService {
     }
 
     public ResponseMessage<UserResponse> createUser(UserRequest userRequest) {
+
         User user = userMapper.mapUserRequestToUser(userRequest);
 
         if (userRepository.existsByEmail(userRequest.getEmail())) {
             throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getEmail()));
         }
 
+        //Could have done with || operator in single if statement but wanted to give different Error Mesages
         if (userRepository.existsByPhone(userRequest.getPhone())) {
             throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getPhone()));
         }
 
         Set<UserRole> userRoles = new HashSet<>();
 
-        if (userRequest.getUserRole().equals(RoleType.ADMIN.getName())) {
-            UserRole adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN)
-                    .orElseThrow(() -> new RuntimeException("Admin role not found"));
+
+        //TODO:Look to this.
+        if (userRequest.equals(RoleType.ADMIN.getName())) {
+            UserRole adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN).orElseThrow(() -> new RuntimeException("Admin role not found"));
             userRoles.add(adminRole);
-        } else if (userRequest.getUserRole().equals(RoleType.EMPLOYEE.getName())) {
-            UserRole employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE)
-                    .orElseThrow(() -> new RuntimeException("Employee role not found"));
+        } else if (userRequest.equals(RoleType.EMPLOYEE.getName())) {
+            UserRole employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE).orElseThrow(() -> new RuntimeException("Employee role not found"));
             userRoles.add(employeeRole);
         } else {
-            UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER)
-                    .orElseThrow(() -> new RuntimeException("Member role not found"));
+            UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER).orElseThrow(() -> new RuntimeException("Member role not found"));
             userRoles.add(memberRole);
         }
 
@@ -149,6 +165,41 @@ public class UserService {
                 .message(SuccessMessages.USER_CREATED)
                 .httpStatus(HttpStatus.CREATED)
                 .object(userMapper.mapUserToUserResponse(user))
+                .build();
+    }
+
+    public ResponseMessage<UserResponse> updateUser(UserRequest userUpdateRequest, Long userId, HttpServletRequest httpServletRequest) {
+
+        String authentication = (String) httpServletRequest.getAttribute("username");
+        User currentUser = userRepository
+                .findByEmail(authentication)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        (String.format(ErrorMessages.NOT_FOUND_USER_MESSAGE, authentication)));
+
+        User userToBeUpdated = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        (String.format(ErrorMessages.USER_NOT_FOUND_WITH_ID, userId)));
+
+        uniquePropertyValidator.checkDuplicate(userUpdateRequest.getEmail(), userUpdateRequest.getPhone());
+
+        User updatedUser;
+
+        boolean isAdmin = currentUser.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.ADMIN));
+        boolean isEmployee = currentUser.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.EMPLOYEE));
+        boolean isMember = userToBeUpdated.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.MEMBER));
+
+        if (isAdmin || (isEmployee && isMember)) {
+            User toBeUpdatedUser = userMapper.mapUserUpdateRequestToUser(userToBeUpdated, userUpdateRequest);
+            updatedUser = userMapper.mapUpdatedUserToCurrentUser(currentUser, toBeUpdatedUser);
+        } else {
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+        }
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_UPDATED)
+                .httpStatus(HttpStatus.OK)
+                .object(userMapper.mapUserToUserResponse(updatedUser))
                 .build();
     }
 }

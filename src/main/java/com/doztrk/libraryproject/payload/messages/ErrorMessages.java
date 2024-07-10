@@ -41,7 +41,6 @@ public class ErrorMessages {
 
     public static final String NOT_FOUND_USER_MESSAGE = "User not found with id %s ";
 
-    public static final String NOT_FOUND_USER_WITH_ROLE_MESSAGE = "The role information of the user with id %s is not role: %s";
     public static final String USER_AND_LOAN_NO_MATCH = "Loan not found with user ID %s";
     public static final String PAST_DUE_LOAN = "User with id %s has past due book return date";
     public static final String EXCEEDED_LOAN_LIMIT = "User has reached the maximum number of borrowed books";
@@ -55,5 +54,6 @@ public class ErrorMessages {
     public static final String ALREADY_REGISTER_MESSAGE_PHONE = "A User with this phone %s already exists";
     public static final String ALREADY_REGISTER_MESSAGE_EMAIL = "A User with this E-mail %s already exists";
 
+    public static final String ROLE_NOT_FOUND ="Role is not found" ;
 
 }

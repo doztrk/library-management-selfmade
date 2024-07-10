@@ -28,14 +28,4 @@ public class UserRole {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    @Column(nullable = false)
-    private String roleName;
-
-    @PrePersist
-    public void prePersist() {
-        if (roleName == null && roleType != null) {
-            this.roleName = roleType.getName();
-        }
-    }
-
 }

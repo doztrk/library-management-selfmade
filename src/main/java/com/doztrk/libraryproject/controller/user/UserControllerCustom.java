@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,6 +50,12 @@ public class UserControllerCustom {
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     public ResponseMessage<UserResponse> createUser(@RequestBody @Valid UserRequest userRequest) {
         return userService.createUser(userRequest);
+    }
+
+    @PutMapping("/{userId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
+    public ResponseMessage<UserResponse> updateUser(@RequestBody @Valid UserRequest userUpdateRequest, @PathVariable  Long userId, HttpServletRequest httpServletRequest){
+        return userService.updateUser(userUpdateRequest,userId);
     }
 
 
