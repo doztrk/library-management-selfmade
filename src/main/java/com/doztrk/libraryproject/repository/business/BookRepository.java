@@ -44,4 +44,6 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 
 
     boolean existsByCategoryId(Long categoryId);
+
+    List<Book> findByIdIn(List<Long> ids);
 }

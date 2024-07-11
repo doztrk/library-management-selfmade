@@ -31,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = userRoles.stream()
-                .map(userRole -> new SimpleGrantedAuthority(userRole.getRoleName()))
+                .map(userRole -> new SimpleGrantedAuthority(userRole.getRoleType().enumRole))
                 .collect(Collectors.toList());
     }
 

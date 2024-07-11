@@ -43,6 +43,7 @@ public class BookMapper {
                 .isFeatured(bookUpdateRequest.getIsFeatured())
                 .build();
     }
+
     public Book mapBookRequestToBook(BookRequest bookRequest) {
         return Book.builder()
                 .name(bookRequest.getName())
@@ -74,6 +75,14 @@ public class BookMapper {
                 .isFeatured(updatedBook.getIsFeatured())
                 .createDate(updatedBook.getCreateDate())
                 .builtIn(updatedBook.getBuiltIn())
+                .build();
+    }
+
+    public BookResponse mapBookToBookResponseWithIdIsbnName(Book book) {
+        return BookResponse.builder()
+                .id(book.getId())
+                .isbn(book.getIsbn())
+                .name(book.getName())
                 .build();
     }
 }

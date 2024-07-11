@@ -1,5 +1,6 @@
 package com.doztrk.libraryproject.payload.response.business;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+// @JsonInclude(JsonInclude.Include.NON_NULL)  Can make it so it only brings the non-null fields in response.
 public class BookResponse {
 
     private Long id;

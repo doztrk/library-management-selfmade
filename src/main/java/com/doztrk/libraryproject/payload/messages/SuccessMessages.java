@@ -39,6 +39,7 @@ public class SuccessMessages {
     public static final String USER_UPDATED = "User has been updated successfully";
     public static final String USER_DELETED = "User has been deleted successfully";
 
+    public static final String REPORT_RETRIEVED ="Report has been retrieved successfully" ;
 
 
 
