@@ -30,19 +30,20 @@ public class BookMapper {
                 .builtIn(book.getBuiltIn()).build();
     }
 
-    public Book mapBookRequestToUpdatedBook(BookRequest bookRequest, Long bookId) {
+    public Book mapBookUpdateRequestToBook(BookRequest bookUpdateRequest, Long bookId) {
         return Book.builder()
                 .id(bookId)
-                .name(bookRequest.getName())
-                .isbn(bookRequest.getIsbn())
-                .pageCount(bookRequest.getPageCount())
-                .image(bookRequest.getImage())
-                .isLoanable(bookRequest.getIsLoanable())
-                .shelfCode(bookRequest.getShelfCode())
-                .isActive(bookRequest.getIsActive())
-                .isFeatured(bookRequest.getIsFeatured())
+                .name(bookUpdateRequest.getName())
+                .isbn(bookUpdateRequest.getIsbn())
+                .pageCount(bookUpdateRequest.getPageCount())
+                .image(bookUpdateRequest.getImage())
+                .isLoanable(bookUpdateRequest.getIsLoanable())
+                .shelfCode(bookUpdateRequest.getShelfCode())
+                .isActive(bookUpdateRequest.getIsActive())
+                .isFeatured(bookUpdateRequest.getIsFeatured())
                 .build();
     }
+
     public Book mapBookRequestToBook(BookRequest bookRequest) {
         return Book.builder()
                 .name(bookRequest.getName())
@@ -74,6 +75,14 @@ public class BookMapper {
                 .isFeatured(updatedBook.getIsFeatured())
                 .createDate(updatedBook.getCreateDate())
                 .builtIn(updatedBook.getBuiltIn())
+                .build();
+    }
+
+    public BookResponse mapBookToBookResponseWithIdIsbnName(Book book) {
+        return BookResponse.builder()
+                .id(book.getId())
+                .isbn(book.getIsbn())
+                .name(book.getName())
                 .build();
     }
 }

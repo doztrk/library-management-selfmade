@@ -61,7 +61,7 @@ public class BookRequest {
     private Boolean isFeatured;
 
     @NotNull
-    private Boolean builtIn;
+    private Boolean builtIn = false;
 
 
 }

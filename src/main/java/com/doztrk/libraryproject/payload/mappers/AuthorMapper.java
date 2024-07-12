@@ -20,4 +20,12 @@ public class AuthorMapper {
                 .name(authorRequest.getName())
                 .build();
     }
+
+    public Author mapAuthorUpdateRequestToAuthor(AuthorRequest updateAuthorRequest, Author author) {
+        return Author.builder()
+                .id(author.getId())
+                .name(updateAuthorRequest.getName())
+                .builtIn(updateAuthorRequest.getBuiltIn())
+                .build();
+    }
 }

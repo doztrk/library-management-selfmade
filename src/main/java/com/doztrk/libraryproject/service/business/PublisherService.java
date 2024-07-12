@@ -48,8 +48,8 @@ public class PublisherService {
 
     public ResponseMessage<PublisherResponse> createPublisher(PublisherRequest publisherRequest) {
 
-        if (!publisherRepository.existsByName(publisherRequest.getName().isEmpty())){
-            throw new ConflictException(String.format(ErrorMessages.PUBLISHER_ALREADY_EXISTS,publisherRequest.getName()));
+        if (!publisherRepository.existsByName(publisherRequest.getName().isEmpty())) {
+            throw new ConflictException(String.format(ErrorMessages.PUBLISHER_ALREADY_EXISTS, publisherRequest.getName()));
         }
         Publisher publisher = publisherMapper.mapPublisherRequestToPublisher(publisherRequest);
 
@@ -71,8 +71,7 @@ public class PublisherService {
                         .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.PUBLISHER_NOT_FOUND, publisherId)));
 
 
-        publisher.setName(updatePublisherRequest.getName());
-        publisher.setBuiltIn(updatePublisherRequest.getBuiltIn());
+        Publisher publisherToBeUpdated = publisherMapper.mapPublisherUpdateRequestToPublisher(updatePublisherRequest, publisherId);
 
         publisherRepository.save(publisher);
 
@@ -92,7 +91,9 @@ public class PublisherService {
                         .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.PUBLISHER_NOT_FOUND, publisherId)));
         if (!publisher.getBookList().isEmpty()) {
             throw new BadRequestException(String.format(ErrorMessages.PUBLISHER_HAS_BOOKS_ASSIGNED, publisher.getId()));
-        }else{
+        } else if (Boolean.TRUE.equals(publisher.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+        } else {
             publisherRepository.deleteById(publisherId);
         }
 

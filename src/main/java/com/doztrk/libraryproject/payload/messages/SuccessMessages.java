@@ -24,8 +24,22 @@ public class SuccessMessages {
 
 
     public static final String AUTHOR_FOUND ="Author has been found successfully" ;
-    public static final String AUTHOR_DELETED = "Author has been deleted successfuly";
+    public static final String AUTHOR_DELETED = "Author has been deleted successfully";
+    public static final String AUTHOR_UPDATED = "Author has been updated successfully";
 
+
+    public static final String CATEGORY_FOUND = "Category has been found successfully" ;
+    public static final String CATEGORY_CREATED = "Category has been created successfully" ;
+    public static final String CATEGORY_UPDATED = "Category has been updated successfully" ;
+    public static final String CATEGORY_DELETED = "Category has been deleted successfully";
+
+    public static final String USER_REGISTERED = "User has been registered successfully";
+    public static final String USER_FOUND = "User has been found successfully";
+    public static final String USER_CREATED = "User has been created successfully";
+    public static final String USER_UPDATED = "User has been updated successfully";
+    public static final String USER_DELETED = "User has been deleted successfully";
+
+    public static final String REPORT_RETRIEVED ="Report has been retrieved successfully" ;
 
 
 

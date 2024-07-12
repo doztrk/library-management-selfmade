@@ -57,9 +57,9 @@ public class BookController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping("/{bookId}")
-    public ResponseMessage<BookResponse> updateBookById(@PathVariable Long bookId,
-                                                        @RequestBody @Valid BookRequest bookRequest){
-        return bookService.updateBookById(bookRequest,bookId);
+    public ResponseMessage<BookResponse> updateBookById(@RequestBody @Valid BookRequest bookRequest,
+                                                        @PathVariable Long bookId) {
+        return bookService.updateBookById(bookRequest, bookId);
     }
 
 

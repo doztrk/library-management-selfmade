@@ -7,13 +7,13 @@ public enum RoleType {
     MEMBER("Member"),
     EMPLOYEE("Employee");
 
-    public final String name;
+    public final String enumRole;
 
     RoleType(String name) {
-        this.name = name;
+        this.enumRole = name;
     }
 
     public String getName() {
-        return name;
+        return enumRole;
     }
 }

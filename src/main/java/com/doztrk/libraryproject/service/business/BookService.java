@@ -20,12 +20,9 @@ import com.doztrk.libraryproject.repository.business.PublisherRepository;
 import com.doztrk.libraryproject.service.helper.PageableHelper;
 import com.doztrk.libraryproject.service.validator.BookValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 @Service
@@ -39,7 +36,6 @@ public class BookService {
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final CategoryRepository categoryRepository;
-
 
 
 //TODO:getBooksByPage
@@ -136,33 +132,34 @@ public class BookService {
                 .build();
     }
 
-    public ResponseMessage<BookResponse> updateBookById(BookRequest bookRequest, Long bookId) {
-       Book existingBook =  bookRepository.findById(bookId)
-               .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, bookId)));
-        //Checker for builtIn of the book
-       if (existingBook.getBuiltIn()){
-            throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
+    public ResponseMessage<BookResponse> updateBookById(BookRequest bookUpdateRequest, Long bookId) {
+
+        if (!bookRepository.existsById(bookId)) {
+            throw new ResourceNotFoundException(String.format(ErrorMessages.BOOK_NOT_FOUND, bookId));
         }
+
         Author author = authorRepository // Get Author
-                .findById(bookRequest.getAuthorId())
-                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.AUTHOR_NOT_FOUND,bookRequest.getAuthorId())));
-        Publisher publisher = publisherRepository.findById(bookRequest.getPublisherId())
-                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.PUBLISHER_NOT_FOUND,bookRequest.getPublisherId())));
-        Category category = categoryRepository.findById(bookRequest.getPublisherId())
-                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.CATEGORY_NOT_FOUND,bookRequest.getCategoryId())));
+                .findById(bookUpdateRequest.getAuthorId())
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.AUTHOR_NOT_FOUND, bookUpdateRequest.getAuthorId())));
+
+        Publisher publisher = publisherRepository.findById(bookUpdateRequest.getPublisherId())
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.PUBLISHER_NOT_FOUND, bookUpdateRequest.getPublisherId())));
+
+        Category category = categoryRepository.findById(bookUpdateRequest.getPublisherId())
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.CATEGORY_NOT_FOUND, bookUpdateRequest.getCategoryId())));
 
 
-        Book updatedBook = bookMapper.mapBookRequestToUpdatedBook(bookRequest,bookId);
+        Book updatedBook = bookMapper.mapBookUpdateRequestToBook(bookUpdateRequest, bookId);
         updatedBook.setAuthor(author);
         updatedBook.setPublisher(publisher);
         updatedBook.setCategory(category);
 
         bookRepository.save(updatedBook);
 
-       return ResponseMessage.<BookResponse>builder()
-               .message(SuccessMessages.BOOK_UPDATED)
-               .httpStatus(HttpStatus.OK)
-               .object(bookMapper.mapBookToUpdatedBookResponse(updatedBook))
-               .build();
+        return ResponseMessage.<BookResponse>builder()
+                .message(SuccessMessages.BOOK_UPDATED)
+                .httpStatus(HttpStatus.OK)
+                .object(bookMapper.mapBookToUpdatedBookResponse(updatedBook))
+                .build();
     }
 }
