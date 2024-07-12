@@ -141,8 +141,8 @@ public class UserService {
         if (userRole.equalsIgnoreCase(RoleType.ADMIN.name())) {
             if (Objects.equals(userRequest.getRoleName(), "Admin")) {
                 user.setBuiltIn(true);
-                user.setRoles(userRoleService.getUserRole(RoleType.ADMIN));
             }
+            user.setRoles(userRoleService.getUserRole(RoleType.ADMIN));
         } else if (userRole.equalsIgnoreCase(RoleType.MEMBER.getName())) {
             user.setBuiltIn(false);
             user.setRoles(userRoleService.getUserRole(RoleType.MEMBER));
@@ -152,13 +152,13 @@ public class UserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        userRepository.save(user);
+       User savedUser =  userRepository.save(user);
 
 
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_CREATED)
                 .httpStatus(HttpStatus.CREATED)
-                .object(userMapper.mapUserToUserResponse(user))
+                .object(userMapper.mapUserToUserResponse(savedUser))
                 .build();
     }
 
