@@ -1,8 +1,5 @@
 package com.doztrk.libraryproject.controller.user;
 
-import com.doztrk.libraryproject.entity.concretes.user.User;
-import com.doztrk.libraryproject.entity.concretes.user.UserRole;
-import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.doztrk.libraryproject.payload.mappers.UserMapper;
 import com.doztrk.libraryproject.payload.request.user.UserRequest;
 import com.doztrk.libraryproject.payload.response.business.ResponseMessage;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -48,8 +43,8 @@ public class UserControllerCustom {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
-    public ResponseMessage<UserResponse> createUser(@RequestBody @Valid UserRequest userRequest) {
-        return userService.createUser(userRequest);
+    public ResponseMessage<UserResponse> createUser(@RequestBody @Valid UserRequest userRequest,String userRole) {
+        return userService.createUser(userRequest, userRole);
     }
 
     @PutMapping("/{userId}")

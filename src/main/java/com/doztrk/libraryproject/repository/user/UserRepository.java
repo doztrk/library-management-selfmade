@@ -1,6 +1,7 @@
 package com.doztrk.libraryproject.repository.user;
 
 import com.doztrk.libraryproject.entity.concretes.user.User;
+import com.doztrk.libraryproject.entity.enums.RoleType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,4 +29,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u, COUNT(l) as loanCount FROM User u JOIN u.loanList l GROUP BY u.id ORDER BY loanCount DESC")
     Page<Object[]> findMostBorrowers(Pageable pageable);
+
+
 }

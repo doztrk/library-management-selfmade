@@ -15,17 +15,19 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserRole {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(mappedBy = "userRoles",cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "roles",cascade = CascadeType.REMOVE)
     private Set<User> userSet;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
+
+    String roleName;
 
 }

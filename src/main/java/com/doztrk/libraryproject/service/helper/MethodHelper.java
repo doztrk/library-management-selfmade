@@ -2,7 +2,7 @@ package com.doztrk.libraryproject.service.helper;
 
 
 import com.doztrk.libraryproject.entity.concretes.business.*;
-import com.doztrk.libraryproject.entity.concretes.user.UserRole;
+import com.doztrk.libraryproject.entity.concretes.user.Role;
 import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
 import com.doztrk.libraryproject.payload.messages.ErrorMessages;
@@ -50,9 +50,9 @@ public class MethodHelper {
 //    }
 
 
-    public boolean checkRole(Set<UserRole> userRoles, RoleType roleType) {
-        for (UserRole userRole : userRoles) {
-            if (userRole.getRoleType().equals(roleType)) {
+    public boolean checkRole(Set<Role> roles, RoleType roleType) {
+        for (Role role : roles) {
+            if (role.getRoleType().equals(roleType)) {
                 return true;
             }
         }

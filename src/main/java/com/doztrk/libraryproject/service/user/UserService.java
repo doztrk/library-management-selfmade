@@ -1,7 +1,7 @@
 package com.doztrk.libraryproject.service.user;
 
+import com.doztrk.libraryproject.entity.concretes.user.Role;
 import com.doztrk.libraryproject.entity.concretes.user.User;
-import com.doztrk.libraryproject.entity.concretes.user.UserRole;
 import com.doztrk.libraryproject.entity.enums.RoleType;
 import com.doztrk.libraryproject.exception.BadRequestException;
 import com.doztrk.libraryproject.exception.ResourceNotFoundException;
@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -50,13 +51,13 @@ public class UserService {
 
         User user = userMapper.mapUserRequestToUser(userRequest);
 
-        Set<UserRole> roles = new HashSet<>();
-        UserRole memberRole = userRoleRepository
+        Set<Role> roles = new HashSet<>();
+        Role memberRole = userRoleRepository
                 .findByRoleType(RoleType.MEMBER)
                 .orElseThrow(
                         () -> new RuntimeException("Member role not found"));
         roles.add(memberRole);
-        user.setUserRoles(roles);
+        user.setRoles(roles);
 
         userRepository.save(user);
 
@@ -130,37 +131,44 @@ public class UserService {
                 .build();
     }
 
-    public ResponseMessage<UserResponse> createUser(UserRequest userRequest) {
+    public ResponseMessage<UserResponse> createUser(UserRequest userRequest, String userRole) {
+
+
+        uniquePropertyValidator.checkDuplicate(userRequest.getEmail(), userRequest.getPhone());
 
         User user = userMapper.mapUserRequestToUser(userRequest);
 
-        if (userRepository.existsByEmail(userRequest.getEmail())) {
-            throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getEmail()));
+        if (userRole.equalsIgnoreCase(RoleType.ADMIN.name())) {
+            if (Objects.equals(userRequest.getRoleName(), "Admin")) {
+                user.setBuiltIn(true);
+                user.setRoles(userRoleService.getUserRole(RoleType.ADMIN));
+            }
+
+            //Could have done with || operator in single if statement but wanted to give different Error Mesages
+            if (userRepository.existsByPhone(userRequest.getPhone())) {
+                throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getPhone()));
+            }
+
+            Set<Role> roles = new HashSet<>();
+
+
+            //TODO:Look to this.
+            if (userRequest.equals(RoleType.ADMIN.getName())) {
+                Role adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN).orElseThrow(() -> new RuntimeException("Admin role not found"));
+                roles.add(adminRole);
+            } else if (userRequest.equals(RoleType.EMPLOYEE.getName())) {
+                Role employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE).orElseThrow(() -> new RuntimeException("Employee role not found"));
+                roles.add(employeeRole);
+            } else {
+                Role memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER).orElseThrow(() -> new RuntimeException("Member role not found"));
+                roles.add(memberRole);
+            }
+
+            user.setRoles(roles);
+            userRepository.save(user);
+
+
         }
-
-        //Could have done with || operator in single if statement but wanted to give different Error Mesages
-        if (userRepository.existsByPhone(userRequest.getPhone())) {
-            throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getPhone()));
-        }
-
-        Set<UserRole> userRoles = new HashSet<>();
-
-
-        //TODO:Look to this.
-        if (userRequest.equals(RoleType.ADMIN.getName())) {
-            UserRole adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN).orElseThrow(() -> new RuntimeException("Admin role not found"));
-            userRoles.add(adminRole);
-        } else if (userRequest.equals(RoleType.EMPLOYEE.getName())) {
-            UserRole employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE).orElseThrow(() -> new RuntimeException("Employee role not found"));
-            userRoles.add(employeeRole);
-        } else {
-            UserRole memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER).orElseThrow(() -> new RuntimeException("Member role not found"));
-            userRoles.add(memberRole);
-        }
-
-        user.setUserRoles(userRoles);
-        userRepository.save(user);
-
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_CREATED)
                 .httpStatus(HttpStatus.CREATED)
@@ -185,9 +193,9 @@ public class UserService {
 
         User updatedUser;
 
-        boolean isAdmin = currentUser.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.ADMIN));
-        boolean isEmployee = currentUser.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.EMPLOYEE));
-        boolean isMember = userToBeUpdated.getUserRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.MEMBER));
+        boolean isAdmin = currentUser.getRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.ADMIN));
+        boolean isEmployee = currentUser.getRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.EMPLOYEE));
+        boolean isMember = userToBeUpdated.getRoles().stream().anyMatch(role -> role.getRoleType().equals(RoleType.MEMBER));
 
         if (isAdmin || (isEmployee && isMember)) {
             User toBeUpdatedUser = userMapper.mapUserUpdateRequestToUser(userToBeUpdated, userUpdateRequest);
@@ -202,6 +210,7 @@ public class UserService {
                 .object(userMapper.mapUserToUserResponse(updatedUser))
                 .build();
     }
+
 
     public ResponseMessage<UserResponse> deleteUser(Long userId) {
 
@@ -224,4 +233,6 @@ public class UserService {
                 .object(userMapper.mapUserToUserResponse(user))
                 .build();
     }
+
+
 }
