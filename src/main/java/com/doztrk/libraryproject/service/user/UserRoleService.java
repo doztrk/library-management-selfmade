@@ -17,7 +17,7 @@ public class UserRoleService {
 
 
     public UserRole getUserRole(RoleType roleType){
-        return userRoleRepository.findByEnumRoleEquals(roleType).orElseThrow(()->
+        return userRoleRepository.findByRoleTypeEquals(roleType).orElseThrow(()->
                 new ResourceNotFoundException(ErrorMessages.ROLE_NOT_FOUND));
     }
 

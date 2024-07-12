@@ -1,30 +1,30 @@
-"2024-07-11 15:32:11,941 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 76633 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
-""2024-07-11 15:32:11,944 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
-""2024-07-11 15:32:12,258 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-""2024-07-11 15:32:12,289 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 26 ms. Found 7 JPA repository interfaces.
-""2024-07-11 15:32:12,539 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
-""2024-07-11 15:32:12,543 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-""2024-07-11 15:32:12,543 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
-""2024-07-11 15:32:12,582 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-""2024-07-11 15:32:12,582 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 607 ms
-""2024-07-11 15:32:12,646 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-""2024-07-11 15:32:12,667 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
-""2024-07-11 15:32:12,728 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-""2024-07-11 15:32:12,769 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-""2024-07-11 15:32:12,876 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-""2024-07-11 15:32:12,882 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
-""2024-07-11 15:32:13,260 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2024-07-11 15:32:13,263 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 15:32:13,561 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-""2024-07-11 15:32:13,562 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 15:32:13,563 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-""2024-07-11 15:32:13,565 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
-""2024-07-11 15:32:13,565 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-""2024-07-11 15:32:13,571 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
+"2024-07-12 10:04:04,294 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 82430 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
+""2024-07-12 10:04:04,297 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-12 10:04:04,633 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-12 10:04:04,665 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 27 ms. Found 7 JPA repository interfaces.
+""2024-07-12 10:04:04,933 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-12 10:04:04,937 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-12 10:04:04,937 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-12 10:04:04,977 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-12 10:04:04,977 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 655 ms
+""2024-07-12 10:04:05,040 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-12 10:04:05,059 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-12 10:04:05,119 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-12 10:04:05,158 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-12 10:04:05,259 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-12 10:04:05,266 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-12 10:04:05,649 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-12 10:04:05,652 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 10:04:05,970 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+""2024-07-12 10:04:05,971 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 10:04:05,972 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-12 10:04:05,974 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2024-07-12 10:04:05,974 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+""2024-07-12 10:04:05,980 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-""2024-07-11 15:32:13,578 ERROR [main] org.springframework.boot.SpringApplication:Application run failed
-"org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+""2024-07-12 10:04:05,988 ERROR [main] org.springframework.boot.SpringApplication:Application run failed
+"org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
@@ -45,7 +45,7 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
 	at com.doztrk.libraryproject.LibraryProjectApplication.main(LibraryProjectApplication.java:10)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
@@ -62,7 +62,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -76,7 +76,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 33 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
 	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
 	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
 	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
@@ -102,7 +102,7 @@ Caused by: org.springframework.data.repository.query.QueryCreationException: Cou
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
 	... 44 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional findByRoleTypeEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
 	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
 	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
 	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
@@ -141,432 +141,24 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
 	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
 	... 70 common frames omitted
-"2024-07-11 16:01:28,765 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 77263 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
-""2024-07-11 16:01:28,767 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
-""2024-07-11 16:01:29,089 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-""2024-07-11 16:01:29,116 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
-""2024-07-11 16:01:29,349 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
-""2024-07-11 16:01:29,353 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-""2024-07-11 16:01:29,353 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
-""2024-07-11 16:01:29,386 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-""2024-07-11 16:01:29,386 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 596 ms
-""2024-07-11 16:01:29,444 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-""2024-07-11 16:01:29,464 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
-""2024-07-11 16:01:29,520 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-""2024-07-11 16:01:29,551 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-""2024-07-11 16:01:29,647 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-""2024-07-11 16:01:29,654 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
-""2024-07-11 16:01:29,998 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2024-07-11 16:01:30,002 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:01:30,319 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-""2024-07-11 16:01:30,321 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:01:30,322 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-""2024-07-11 16:01:30,324 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
-""2024-07-11 16:01:30,324 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-""2024-07-11 16:01:30,329 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-""2024-07-11 16:01:30,337 ERROR [main] org.springframework.boot.SpringApplication:Application run failed
-"org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.doztrk.libraryproject.LibraryProjectApplication.main(LibraryProjectApplication.java:10)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 33 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
-	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
-	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
-	at org.springframework.data.util.Lazy.get(Lazy.java:115)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 44 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
-	... 66 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
-	... 70 common frames omitted
-"2024-07-11 16:03:21,378 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 77327 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
-""2024-07-11 16:03:21,380 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
-""2024-07-11 16:03:21,698 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-""2024-07-11 16:03:21,731 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 29 ms. Found 7 JPA repository interfaces.
-""2024-07-11 16:03:21,957 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
-""2024-07-11 16:03:21,961 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-""2024-07-11 16:03:21,961 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
-""2024-07-11 16:03:21,996 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-""2024-07-11 16:03:21,996 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 595 ms
-""2024-07-11 16:03:22,059 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-""2024-07-11 16:03:22,085 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
-""2024-07-11 16:03:22,142 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-""2024-07-11 16:03:22,178 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-""2024-07-11 16:03:22,273 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-""2024-07-11 16:03:22,280 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
-""2024-07-11 16:03:22,639 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2024-07-11 16:03:22,643 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:03:22,958 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-""2024-07-11 16:03:22,959 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:03:22,960 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-""2024-07-11 16:03:22,962 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
-""2024-07-11 16:03:22,962 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-""2024-07-11 16:03:22,967 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-""2024-07-11 16:03:22,975 ERROR [main] org.springframework.boot.SpringApplication:Application run failed
-"org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.doztrk.libraryproject.LibraryProjectApplication.main(LibraryProjectApplication.java:10)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 33 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
-	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
-	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
-	at org.springframework.data.util.Lazy.get(Lazy.java:115)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 44 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
-	... 66 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
-	... 70 common frames omitted
-"2024-07-11 16:04:08,093 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 77370 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
-""2024-07-11 16:04:08,094 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
-""2024-07-11 16:04:08,415 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-""2024-07-11 16:04:08,447 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 27 ms. Found 7 JPA repository interfaces.
-""2024-07-11 16:04:08,685 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
-""2024-07-11 16:04:08,689 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-""2024-07-11 16:04:08,689 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
-""2024-07-11 16:04:08,720 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-""2024-07-11 16:04:08,720 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 601 ms
-""2024-07-11 16:04:08,788 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-""2024-07-11 16:04:08,809 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
-""2024-07-11 16:04:08,868 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-""2024-07-11 16:04:08,900 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-""2024-07-11 16:04:08,986 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-""2024-07-11 16:04:08,993 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
-""2024-07-11 16:04:09,357 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2024-07-11 16:04:09,360 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:04:09,670 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-""2024-07-11 16:04:09,671 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-""2024-07-11 16:04:09,672 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-""2024-07-11 16:04:09,674 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
-""2024-07-11 16:04:09,674 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-""2024-07-11 16:04:09,679 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-""2024-07-11 16:04:09,687 ERROR [main] org.springframework.boot.SpringApplication:Application run failed
-"org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportController' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/controller/business/ReportController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.doztrk.libraryproject.LibraryProjectApplication.main(LibraryProjectApplication.java:10)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'reportService' defined in file [/Users/dogu/Desktop/MyProjects/Library-Project/target/classes/com/doztrk/libraryproject/service/business/ReportService.class]: Unsatisfied dependency expressed through constructor parameter 5; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRoleRepository' defined in com.doztrk.libraryproject.repository.user.UserRoleRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 33 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType); Reason: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'; nested exception is java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:107)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:95)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
-	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
-	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:97)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:87)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:87)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:365)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:323)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:231)
-	at org.springframework.data.util.Lazy.get(Lazy.java:115)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:329)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 44 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.doztrk.libraryproject.repository.user.UserRoleRepository.findByEnumRoleEquals(com.doztrk.libraryproject.entity.enums.RoleType)! No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:96)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:119)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:259)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:93)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:103)
-	... 66 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'enumRole' found for type 'UserRole'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:91)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:438)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:414)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:367)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:349)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:250)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:251)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:384)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:385)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:96)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:89)
-	... 70 common frames omitted
+"2024-07-12 10:05:30,608 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 82521 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
+""2024-07-12 10:05:30,609 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-12 10:05:30,919 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-12 10:05:30,955 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 32 ms. Found 7 JPA repository interfaces.
+""2024-07-12 10:05:31,197 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-12 10:05:31,201 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-12 10:05:31,201 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-12 10:05:31,234 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-12 10:05:31,234 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 605 ms
+""2024-07-12 10:05:31,300 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-12 10:05:31,321 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-12 10:05:31,377 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-12 10:05:31,410 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-12 10:05:31,494 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-12 10:05:31,501 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-12 10:05:31,854 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-12 10:05:31,859 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 10:05:32,312 INFO  [main] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@73905dff, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c0d3715, org.springframework.security.web.context.SecurityContextPersistenceFilter@486bcaa, org.springframework.security.web.header.HeaderWriterFilter@515d615, org.springframework.web.filter.CorsFilter@5d67bf4d, org.springframework.security.web.authentication.logout.LogoutFilter@7a364e1c, com.doztrk.libraryproject.security.jwt.AuthTokenFilter@1f6e6f50, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f3a0f37, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ec8db0c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@31de8099, org.springframework.security.web.session.SessionManagementFilter@78b44fcb, org.springframework.security.web.access.ExceptionTranslationFilter@1d6a0962, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@a84b6de]
+""2024-07-12 10:05:32,384 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
+""2024-07-12 10:05:32,388 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Started LibraryProjectApplication in 1.952 seconds (JVM running for 2.125)
+"
