@@ -143,38 +143,25 @@ public class UserService {
                 user.setBuiltIn(true);
                 user.setRoles(userRoleService.getUserRole(RoleType.ADMIN));
             }
-
-            //Could have done with || operator in single if statement but wanted to give different Error Mesages
-            if (userRepository.existsByPhone(userRequest.getPhone())) {
-                throw new BadRequestException(String.format(ErrorMessages.USER_ALREADY_EXISTS_WITH_EMAIL, userRequest.getPhone()));
-            }
-
-            Set<Role> roles = new HashSet<>();
-
-
-            //TODO:Look to this.
-            if (userRequest.equals(RoleType.ADMIN.getName())) {
-                Role adminRole = userRoleRepository.findByRoleType(RoleType.ADMIN).orElseThrow(() -> new RuntimeException("Admin role not found"));
-                roles.add(adminRole);
-            } else if (userRequest.equals(RoleType.EMPLOYEE.getName())) {
-                Role employeeRole = userRoleRepository.findByRoleType(RoleType.EMPLOYEE).orElseThrow(() -> new RuntimeException("Employee role not found"));
-                roles.add(employeeRole);
-            } else {
-                Role memberRole = userRoleRepository.findByRoleType(RoleType.MEMBER).orElseThrow(() -> new RuntimeException("Member role not found"));
-                roles.add(memberRole);
-            }
-
-            user.setRoles(roles);
-            userRepository.save(user);
-
-
+        } else if (userRole.equalsIgnoreCase(RoleType.MEMBER.getName())) {
+            user.setBuiltIn(false);
+            user.setRoles(userRoleService.getUserRole(RoleType.MEMBER));
+        } else if (userRole.equalsIgnoreCase(RoleType.EMPLOYEE.getName())) {
+            user.setBuiltIn(false);
+            user.setRoles(userRoleService.getUserRole(RoleType.EMPLOYEE));
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepository.save(user);
+
+
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_CREATED)
                 .httpStatus(HttpStatus.CREATED)
                 .object(userMapper.mapUserToUserResponse(user))
                 .build();
     }
+
 
     public ResponseMessage<UserResponse> updateUser(UserRequest userUpdateRequest, Long userId, HttpServletRequest httpServletRequest) {
 

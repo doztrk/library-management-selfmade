@@ -4102,4 +4102,74 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "user_id" referenced
 ""2024-07-12 14:11:23,775 INFO  [main] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d4bac56, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76980c75, org.springframework.security.web.context.SecurityContextPersistenceFilter@6987b74e, org.springframework.security.web.header.HeaderWriterFilter@54a5799f, org.springframework.web.filter.CorsFilter@3696d12d, org.springframework.security.web.authentication.logout.LogoutFilter@46b55a0e, com.doztrk.libraryproject.security.jwt.AuthTokenFilter@476a2819, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63846fa4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@206b959c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@656672fb, org.springframework.security.web.session.SessionManagementFilter@77978658, org.springframework.security.web.access.ExceptionTranslationFilter@72a61e61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@fa689db]
 ""2024-07-12 14:11:23,858 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
 ""2024-07-12 14:11:23,862 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Started LibraryProjectApplication in 2.022 seconds (JVM running for 2.281)
+""2024-07-12 14:14:36,717 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring DispatcherServlet 'dispatcherServlet'
+""2024-07-12 14:30:55,876 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m32s799ms).
+""2024-07-12 14:32:20,056 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m24s181ms).
+""2024-07-12 14:33:46,721 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=56s654ms).
+""2024-07-12 14:35:55,557 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m38s830ms).
+""2024-07-12 14:38:50,913 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m55s356ms).
+""2024-07-12 14:43:47,685 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m26s760ms).
+""2024-07-12 14:54:01,692 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 14:54:01,694 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-12 14:54:01,696 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2024-07-12 14:55:51,275 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 88768 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
+""2024-07-12 14:55:51,276 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-12 14:55:51,590 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-12 14:55:51,617 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
+""2024-07-12 14:55:51,859 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-12 14:55:51,863 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-12 14:55:51,864 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-12 14:55:51,897 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-12 14:55:51,897 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 599 ms
+""2024-07-12 14:55:51,962 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-12 14:55:51,979 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-12 14:55:52,026 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-12 14:55:52,055 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-12 14:55:52,143 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-12 14:55:52,150 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-12 14:55:52,493 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-12 14:55:52,496 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 14:55:52,956 INFO  [main] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@21b2579d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@87f1201, org.springframework.security.web.context.SecurityContextPersistenceFilter@2d36add1, org.springframework.security.web.header.HeaderWriterFilter@58690f5e, org.springframework.web.filter.CorsFilter@796613b7, org.springframework.security.web.authentication.logout.LogoutFilter@332fa6ce, com.doztrk.libraryproject.security.jwt.AuthTokenFilter@1dce481b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4271b748, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@56d6e2e1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77622c82, org.springframework.security.web.session.SessionManagementFilter@4693d24f, org.springframework.security.web.access.ExceptionTranslationFilter@92b1bda, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f0cdd0f]
+""2024-07-12 14:55:53,035 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+""2024-07-12 14:55:53,038 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 14:55:53,038 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-12 14:55:53,040 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2024-07-12 14:55:53,041 INFO  [main] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+""2024-07-12 14:55:53,045 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener:
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+""2024-07-12 14:55:53,051 ERROR [main] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter:
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+""2024-07-12 14:56:23,800 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Starting LibraryProjectApplication using Java 17.0.11 on Dogu-MacBook-Air.local with PID 88799 (/Users/dogu/Desktop/MyProjects/Library-Project/target/classes started by dogu in /Users/dogu/Desktop/MyProjects/Library-Project)
+""2024-07-12 14:56:23,802 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-12 14:56:24,105 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-12 14:56:24,134 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 25 ms. Found 7 JPA repository interfaces.
+""2024-07-12 14:56:24,364 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-12 14:56:24,368 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-12 14:56:24,368 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-12 14:56:24,399 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-12 14:56:24,400 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 575 ms
+""2024-07-12 14:56:24,455 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-12 14:56:24,471 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-12 14:56:24,525 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-12 14:56:24,553 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-12 14:56:24,634 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-12 14:56:24,642 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-12 14:56:24,981 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-12 14:56:24,984 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-12 14:56:25,429 INFO  [main] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@8dc3019, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34ab398b, org.springframework.security.web.context.SecurityContextPersistenceFilter@4270705f, org.springframework.security.web.header.HeaderWriterFilter@77978658, org.springframework.web.filter.CorsFilter@71634e64, org.springframework.security.web.authentication.logout.LogoutFilter@591ba330, com.doztrk.libraryproject.security.jwt.AuthTokenFilter@476a2819, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63537871, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64eb14da, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65cc3902, org.springframework.security.web.session.SessionManagementFilter@1b96d447, org.springframework.security.web.access.ExceptionTranslationFilter@4bc9451b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14d513ca]
+""2024-07-12 14:56:25,505 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
+""2024-07-12 14:56:25,510 INFO  [main] com.doztrk.libraryproject.LibraryProjectApplication:Started LibraryProjectApplication in 1.897 seconds (JVM running for 2.069)
 "
