@@ -54,7 +54,7 @@ public class LoanService {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
 
-        if (!Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getUserRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
+        if (!Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) { //checks if the MEMBER is authenticated in USER.
             throw new BadRequestException(ErrorMessages.NOT_AUTHORIZED);
         }
         Page<Loan> loanPage = loanRepository.findByUserId(authenticatedUser.getId(), pageable);
@@ -72,7 +72,7 @@ public class LoanService {
     }
 
     private void setLoanResponseNotes(LoanResponse loanResponse, Loan loan, User user) { // Set notes if the role is ADMIN or EMPLOYEE
-        if (methodHelper.checkRole(user.getUserRoles(), RoleType.ADMIN) || methodHelper.checkRole(user.getUserRoles(), RoleType.EMPLOYEE)) {
+        if (methodHelper.checkRole(user.getRoles(), RoleType.ADMIN) || methodHelper.checkRole(user.getRoles(), RoleType.EMPLOYEE)) {
             loanResponse.setNotes(loan.getNotes());
         } else {
             loanResponse.setNotes(null);
@@ -85,7 +85,7 @@ public class LoanService {
                 .findByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.USER_NOT_FOUND_WITH_EMAIL,email)));
 
-        if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getUserRoles(), RoleType.MEMBER))) {
+        if (Boolean.TRUE.equals(methodHelper.checkRole(authenticatedUser.getRoles(), RoleType.MEMBER))) {
             throw new BadRequestException(String.format(ErrorMessages.NOT_AUTHORIZED));
         }
         Loan loan = loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.LOAN_NOT_FOUND, id)));

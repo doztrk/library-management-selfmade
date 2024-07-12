@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public abstract class AbstractUserRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Past(message = "Your birthday can not be in the future")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     @Size(min = 10, max = 100)

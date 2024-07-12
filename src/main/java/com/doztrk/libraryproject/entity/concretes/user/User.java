@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public class User {
     private String phone;
 
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -51,6 +51,9 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime createDate;
+
+    @Column(name = "role_name")
+    private String roleName;
 
     @Column
     private String resetPasswordCode;
@@ -63,11 +66,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_roles",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<UserRole> userRoles;
+    private Set<Role> roles;
 
     @PrePersist
     public void prePersist() {
