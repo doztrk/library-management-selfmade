@@ -12,6 +12,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class UserRequest extends BaseUserRequest {
 
-    private String userName;
 }
 

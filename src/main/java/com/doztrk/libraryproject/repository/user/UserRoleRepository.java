@@ -11,7 +11,6 @@ import java.util.Set;
 public interface UserRoleRepository extends JpaRepository<Role,Long> {
     Optional<Role> findByRoleType(RoleType roleType);
 
-
     Set<Role> findByRoleTypeEquals(RoleType roleType);
 
     Long countByRoleType(RoleType roleType);

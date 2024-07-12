@@ -1,5 +1,6 @@
 package com.doztrk.libraryproject.service.user;
 
+import com.doztrk.libraryproject.LibraryProjectApplication;
 import com.doztrk.libraryproject.entity.concretes.user.Role;
 import com.doztrk.libraryproject.entity.concretes.user.User;
 import com.doztrk.libraryproject.entity.enums.RoleType;
@@ -20,6 +21,8 @@ import com.doztrk.libraryproject.service.business.LoanService;
 import com.doztrk.libraryproject.service.helper.PageableHelper;
 import com.doztrk.libraryproject.service.validator.UniquePropertyValidator;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -44,6 +47,9 @@ public class UserService {
     private final LoanRepository loanRepository;
     private final LoanService loanService;
     private final UserRoleService userRoleService;
+
+    private static final Logger logger = LoggerFactory.getLogger(LibraryProjectApplication.class);
+
 
 
     public ResponseMessage<UserResponse> register(UserRequest userRequest) {
@@ -132,6 +138,7 @@ public class UserService {
     }
 
     public ResponseMessage<UserResponse> createUser(UserRequest userRequest, String userRole) {
+        logger.info("Creating user with email: {}", userRequest.getEmail());
 
 
         uniquePropertyValidator.checkDuplicate(userRequest.getEmail(), userRequest.getPhone());
